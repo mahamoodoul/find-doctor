@@ -22,3 +22,7 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('about');
 });
+
+Route::get('/doctor', function () {
+    return view('/doctor/layout/app');
+});
