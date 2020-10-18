@@ -24,5 +24,18 @@ Route::get('/about', function () {
 });
 
 Route::get('/doctor', function () {
-    return view('/doctor/layout/app');
+    return view('/doctor/register');
 });
+
+Route::get('/doctorHome', function () {
+    return view('/doctor/dashboard');
+});
+
+Route::get('/admin', function () {
+    return view('/admin/dashboard');
+});
+
+Route::get('/admin/login', function () {
+    return view('/admin/login');
+});
+
