@@ -46,4 +46,6 @@ Route::post('/doctor_register', 'Doctor\\DoctorRegistration@DoctorRegister');
 Route::post('/doctor_login', 'Doctor\\DoctorRegistration@DoctorLogin');
 Route::get('/doctorHome', 'Doctor\\DoctorRegistration@DoctorDashboard')->middleware('loginCheck');
 Route::get('/doctor_logout', 'Doctor\\DoctorRegistration@onLogout');
-
+Route::get('/doctor_profile', 'Doctor\\DoctorProfileController@profile');
+Route::get('/edit_profile', 'Doctor\\DoctorProfileController@edit_profile');
+Route::get('/getdoctorinfo', 'Doctor\\DoctorProfileController@getBasicInfo');

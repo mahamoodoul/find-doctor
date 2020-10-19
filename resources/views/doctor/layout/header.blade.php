@@ -96,8 +96,8 @@
                     <input id="sessionid" type="hidden" value="<?php echo (Session::get('doctorId')); ?>">
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="profile.html">My Profile</a>
-                    <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+                    <a class="dropdown-item" href="{{ url('/doctor_profile') }}">My Profile</a>
+                    <a class="dropdown-item" href="{{ url('/edit_profile') }}">Update Profile</a>
                     <a style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal" class="dropdown-item" >Logout</a>
                   
                 </div>
