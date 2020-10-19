@@ -27,9 +27,7 @@ Route::get('/doctor', function () {
     return view('/doctor/register');
 });
 
-Route::get('/doctorHome', function () {
-    return view('/doctor/dashboard');
-});
+
 
 Route::get('/admin', function () {
     return view('/admin/dashboard');
@@ -38,4 +36,14 @@ Route::get('/admin', function () {
 Route::get('/admin/login', function () {
     return view('/admin/login');
 });
+
+
+
+
+//doctor portion
+//doctor register
+Route::post('/doctor_register', 'Doctor\\DoctorRegistration@DoctorRegister');
+Route::post('/doctor_login', 'Doctor\\DoctorRegistration@DoctorLogin');
+Route::get('/doctorHome', 'Doctor\\DoctorRegistration@DoctorDashboard')->middleware('loginCheck');
+Route::get('/doctor_logout', 'Doctor\\DoctorRegistration@onLogout');
 

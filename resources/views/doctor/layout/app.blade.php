@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/font-awesome.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
+     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
     <title>@yield('title')</title>
 </head>
 
@@ -23,6 +24,7 @@
 
     <div class="sidebar-overlay" data-reff=""></div>
     <script src="{{asset('assets/js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{asset('assets/js/mycustom.js')}}"></script>
     <script src="{{asset('assets/js/popper.min.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery.slimscroll.js')}}"></script>
