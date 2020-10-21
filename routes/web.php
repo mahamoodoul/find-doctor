@@ -41,7 +41,7 @@ Route::get('/admin/login', function () {
 
 
 //doctor portion
-//doctor register
+//doctor register,login and profile info update and logout.
 Route::post('/doctor_register', 'Doctor\\DoctorRegistration@DoctorRegister');
 Route::post('/doctor_login', 'Doctor\\DoctorRegistration@DoctorLogin');
 Route::get('/doctorHome', 'Doctor\\DoctorRegistration@DoctorDashboard')->middleware('loginCheck');
@@ -52,10 +52,19 @@ Route::get('/getdoctorinfo', 'Doctor\\DoctorProfileController@getBasicInfo');
 Route::get('/getcategory', 'Doctor\\DoctorProfileController@getDoctorCatgory');
 Route::post('/upadte_doctor_info', 'Doctor\\DoctorProfileController@updateDoctorInfo');
 Route::get('/getdoctorallInfo', 'Doctor\\DoctorProfileController@getDoctorAllInformation');
-
-// Route::post('/getdoctorExperience', 'Doctor\\DoctorProfileController@getDoctorExperience');
-
 Route::get('/doctorInfoUpdate', 'Doctor\\DoctorProfileController@doctorInfoUpdate');
+
+
+
+//patient portion
+//pataient register,login
+Route::post('/paitentregister', 'PaitentRgisterController@PaitentRegister');
+Route::post('/paitentLogin', 'PaitentRgisterController@PaitentLogin');
+Route::get('/paitent_logout', 'PaitentRgisterController@PaitentLogout');
+// PaitentLoginCheck
+
+
+
 
 
 

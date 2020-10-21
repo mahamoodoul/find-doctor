@@ -14,7 +14,7 @@
                                             <div class="form-field">
                                                 <div class="select-wrap">
                                                     <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                                    <select name="" id="" class="form-control">
+                                                    <select name="" id="" class="form-control browser-default custom-select">
                                                         <option value="">Select Department</option>
                                                         <option value="">Neurology</option>
                                                         <option value="">Cardiology</option>

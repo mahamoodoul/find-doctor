@@ -4,6 +4,8 @@
 @section('title', 'Find A Doctor')
 
 @section('content')
+@include('layout.header')
+
 
 @include('appointment')
 @include('Category')

@@ -23,8 +23,12 @@
             </div>
             <div class="col-md-3 d-flex mb-2 mb-md-0">
                 <!-- login && registration button -->
-                <button class="btn-login" data-toggle="modal" data-target="#exampleModalCenter">Register</button>
+
+                @if(Session::get('id'))
+                <button class="btn-login" data-toggle="modal" data-target="#logoutModal"><span>(<?php echo (Session::get('p_name')); ?>) </span> Logout</button>
+                @else
                 <button class="btn-login" data-toggle="modal" data-target="#exampleModalCenter1">Login</button>
+                @endif
             </div>
         </div>
     </div>
@@ -55,6 +59,29 @@
 
 
 
+<!-- logoutModal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure Want to log out?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+           
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <a class="btn btn-primary" href="{{ url('/paitent_logout') }}">Yes</a>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 
 <!-- registration page -->
 
@@ -71,64 +98,72 @@
                 <form>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                            <label for="inputEmail4">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter Your Name">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputPassword4">Password</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                            <label for="inputPassword4">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter Your email">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="inputAddress">Address</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputAddress">Phone</label>
+                            <input type="number" class="form-control" id="number" placeholder="Enter Your Number">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputAddress">Gender</label>
+                            <select id="gender" class="form-control browser-default custom-select">
+                                <option value="0" selected>Choose...</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                            <!-- <input type="text" class="form-control" id="inputAddress" placeholder="Enter your Phone"> -->
+                        </div>
+
                     </div>
+
                     <div class="form-group">
-                        <label for="inputAddress2">Address 2</label>
-                        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                        <label for="inputAddress2">Address </label>
+                        <input type="text" class="form-control" id="address" placeholder="Apartment, studio, or floor">
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputCity">City</label>
-                            <input type="text" class="form-control" id="inputCity">
+                            <label for="inputCity">Age</label>
+                            <input type="number" class="form-control" id="age">
                         </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputState">State</label>
-                            <select id="inputState" class="form-control">
-                                <option selected>Choose...</option>
-                                <option>...</option>
+                        <div class="form-group col-md-6">
+                            <label for="inputState">Blood Group</label>
+                            <select id="blood" class="form-control browser-default custom-select">
+                                <option value="0" selected>Choose...</option>
+                                <option value="O+">O+</option>
+                                <option value="A+">A+</option>
+                                <option value="B+">B+</option>
+                                <option value="O-">O-</option>
                             </select>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label for="inputZip">Zip</label>
-                            <input type="text" class="form-control" id="inputZip">
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                            <label class="form-check-label" for="gridCheck">
-                                Check me out
-                            </label>
-                        </div>
+
+                        <label for="inputState">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter Password">
                     </div>
-                    <button type="submit" class="btn btn-primary">Sign in</button>
+
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Submit</button>
+                <button id="paitentRegister" type="button" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </div>
 </div>
 
 
+
+
 <!-- login page -->
-
-
-
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -142,18 +177,21 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Example label</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                        <label for="formGroupExampleInput">Email</label>
+                        <input type="text" class="form-control" id="login_email" placeholder="Input Your Email">
                     </div>
                     <div class="form-group">
-                        <label for="formGroupExampleInput2">Another label</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                        <label for="formGroupExampleInput2">Password</label>
+                        <input type="password" class="form-control" id="login_pass" placeholder="Type Your Password">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Login</button>
+                <button id="loginbtnclick" type="button" class="btn btn-primary">Login</button>
+            </div>
+            <div>
+                <p style="margin-left: 80px; ">Do not have Account??? <a id="clickforRegistration" class="btn-login" data-toggle="modal" data-target="#exampleModalCenter" href="">Click Here</a></p>
             </div>
         </div>
     </div>
