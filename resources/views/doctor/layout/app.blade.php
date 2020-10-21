@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
      <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
      <link href="{{ asset('css/mdb.min.css') }}" rel="stylesheet">
+     
     <title>@yield('title')</title>
 </head>
 
@@ -29,7 +30,6 @@
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/axios.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
-
     <script src="{{asset('assets/js/jquery.slimscroll.js')}}"></script>
     <script src="{{asset('assets/js/Chart.bundle.js')}}"></script>
     <script src="{{asset('assets/js/chart.js')}}"></script>

@@ -19,10 +19,15 @@ class DoctorEducation extends Migration
             $table->string('subject');
             $table->string('starting');
             $table->string('ending');
+            $table->string('category');
             $table->string('degree');
             $table->string('grade');
             $table->string('birth_date');
             $table->string('image');
+            $table->string('phone2');
+            $table->integer('doctor_id');
+            $table->integer('doctor_status')->nullable();
+
 
           
 

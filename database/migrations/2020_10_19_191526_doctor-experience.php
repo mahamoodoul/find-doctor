@@ -20,7 +20,7 @@ class DoctorExperience extends Migration
             $table->string('job_position');
             $table->string('period_start');
             $table->string('period_end');
-
+            $table->integer('doctor_id');
         });
     }
 

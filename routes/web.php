@@ -49,3 +49,13 @@ Route::get('/doctor_logout', 'Doctor\\DoctorRegistration@onLogout');
 Route::get('/doctor_profile', 'Doctor\\DoctorProfileController@profile');
 Route::get('/edit_profile', 'Doctor\\DoctorProfileController@edit_profile');
 Route::get('/getdoctorinfo', 'Doctor\\DoctorProfileController@getBasicInfo');
+Route::get('/getcategory', 'Doctor\\DoctorProfileController@getDoctorCatgory');
+Route::post('/upadte_doctor_info', 'Doctor\\DoctorProfileController@updateDoctorInfo');
+Route::get('/getdoctorallInfo', 'Doctor\\DoctorProfileController@getDoctorAllInformation');
+
+// Route::post('/getdoctorExperience', 'Doctor\\DoctorProfileController@getDoctorExperience');
+
+Route::get('/doctorInfoUpdate', 'Doctor\\DoctorProfileController@doctorInfoUpdate');
+
+
+

@@ -22,16 +22,16 @@
                     <div class="profile-view">
                         <div class="profile-img-wrap">
                             <div class="profile-img">
-                                <a href="#"><img class="avatar" src="assets/img/doctor-03.jpg" alt=""></a>
+                                <a href="#"><img id="imgPreview" class="avatar" src="assets/img/doctor-03.jpg" alt=""></a>
                             </div>
                         </div>
                         <div class="profile-basic">
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="profile-info-left">
-                                        <h3 class="user-name m-t-0 mb-0">Cristina Groves</h3>
-                                        <small class="text-muted">Gynecologist</small>
-                                        <div class="staff-id">Employee ID : DR-0001</div>
+                                        <h3 id="name" class="user-name m-t-0 mb-0"></h3>
+                                        <small id="category" class="text-muted"></small>
+                                        <div class="staff-id"></div>
                                         <div class="staff-msg"><a href="chat.html" class="btn btn-primary">Send Message</a></div>
                                     </div>
                                 </div>
@@ -39,24 +39,24 @@
                                     <ul class="personal-info">
                                         <li>
                                             <span class="title">Phone:</span>
-                                            <span class="text"><a href="#">770-889-6484</a></span>
+                                            <span id="phone" class="text"><a href="#"></a></span>
                                         </li>
                                         <li>
                                             <span class="title">Email:</span>
-                                            <span class="text"><a href="#">cristinagroves@example.com</a></span>
+                                            <span id="email" class="text"><a href="#"></a></span>
                                         </li>
                                         <li>
                                             <span class="title">Birthday:</span>
-                                            <span class="text">3rd March</span>
+                                            <span id="birthdate" class="text"></span>
                                         </li>
                                         <li>
                                             <span class="title">Address:</span>
-                                            <span class="text">714 Burwell Heights Road, Bridge City, TX, 77611</span>
+                                            <span id="address" class="text"></span>
                                         </li>
-                                        <li>
+                                        <!-- <li>
                                             <span class="title">Gender:</span>
-                                            <span class="text">Female</span>
-                                        </li>
+                                            <span id="" class="text"></span>
+                                        </li> -->
                                     </ul>
                                 </div>
                             </div>
@@ -86,24 +86,16 @@
                                             </div>
                                             <div class="experience-content">
                                                 <div class="timeline-content">
-                                                    <a href="#/" class="name">International College of Medical Science (UG)</a>
-                                                    <div>MBBS</div>
-                                                    <span class="time">2001 - 2003</span>
+                                                    <a href="#/" id="institution" class="name"></a>
+                                                    <div id="degree"></div>
+                                                    From </br>
+                                                    <span id="starting_data" class="time"> </span>
+                                                    To</br>
+                                                    <span id="complete_date"></span>
                                                 </div>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="experience-user">
-                                                <div class="before-circle"></div>
-                                            </div>
-                                            <div class="experience-content">
-                                                <div class="timeline-content">
-                                                    <a href="#/" class="name">International College of Medical Science (PG)</a>
-                                                    <div>MD - Obstetrics & Gynaecology</div>
-                                                    <span class="time">1997 - 2001</span>
-                                                </div>
-                                            </div>
-                                        </li>
+                                       
                                     </ul>
                                 </div>
                             </div>
@@ -117,30 +109,13 @@
                                             </div>
                                             <div class="experience-content">
                                                 <div class="timeline-content">
-                                                    <a href="#/" class="name">Consultant Gynecologist</a>
-                                                    <span class="time">Jan 2014 - Present (4 years 8 months)</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="experience-user">
-                                                <div class="before-circle"></div>
-                                            </div>
-                                            <div class="experience-content">
-                                                <div class="timeline-content">
-                                                    <a href="#/" class="name">Consultant Gynecologist</a>
-                                                    <span class="time">Jan 2009 - Present (6 years 1 month)</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="experience-user">
-                                                <div class="before-circle"></div>
-                                            </div>
-                                            <div class="experience-content">
-                                                <div class="timeline-content">
-                                                    <a href="#/" class="name">Consultant Gynecologist</a>
-                                                    <span class="time">Jan 2004 - Present (5 years 2 months)</span>
+                                                    <a href="#/" id="company_name" class="name"></a>
+                                                    <div id="position"></div>
+                                                    From</br>
+                                                    <h5 id="from" class="time">  </h5>
+                                                    To </br>
+                                                    <span id="end"></span>
+                                                    
                                                 </div>
                                             </div>
                                         </li>
@@ -159,216 +134,63 @@
             </div>
         </div>
     </div>
-    <div class="notification-box">
-        <div class="msg-sidebar notifications msg-noti">
-            <div class="topnav-dropdown-header">
-                <span>Messages</span>
-            </div>
-            <div class="drop-scroll msg-list-scroll" id="msg_list">
-                <ul class="list-box">
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">R</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Richard Miles </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item new-message">
-                                <div class="list-left">
-                                    <span class="avatar">J</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">John Doe</span>
-                                    <span class="message-time">1 Aug</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">T</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Tarah Shropshire </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">M</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Mike Litorus</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">C</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Catherine Manseau </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">D</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Domenic Houston </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">B</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Buster Wigton </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">R</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Rolland Webber </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">C</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Claire Mapes </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">M</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Melita Faucher</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">J</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Jeffery Lalor</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">L</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Loren Gatlin</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">T</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Tarah Shropshire</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="topnav-dropdown-footer">
-                <a href="chat.html">See all messages</a>
-            </div>
-        </div>
-    </div>
+
 </div>
+
+
+@endsection
+
+
+@section('script')
+
+<script type="text/javascript">
+    getdoctorAllInfo();
+
+
+
+    function getdoctorAllInfo() {
+
+        axios.get('/getdoctorallInfo')
+            .then(function(response) {
+
+                if (response.status = 200) {
+                    var doctordata = response.data;
+                    console.log(doctordata);
+
+
+                    $('#name').html(doctordata[0].name);
+                    $('#email').html(doctordata[0].email);
+                    $('#address').html(doctordata[0].address);
+                    $('#phone').html(doctordata[0].phone);
+                    $('#birthdate').html(doctordata[0].birth_date);
+                    $('#category').html(doctordata[0].category);
+                    $('#phone2').html(doctordata[0].phone2);
+                    $('#institution').html(doctordata[0].institution);
+                    $('#subject').html(doctordata[0].subject);
+                    $('#starting_data').html(doctordata[0].starting);
+                    $('#complete_date').html(doctordata[0].ending);
+                    $('#degree').html(doctordata[0].address);
+                    $('#grade').html(doctordata[0].grade);
+                    $('#company_name').html(doctordata[0].company_name);
+                    $('#location').html(doctordata[0].location);
+                    $('#position').html(doctordata[0].job_position);
+                    $('#from').html(doctordata[0].period_start);
+                    $('#end').html(doctordata[0].period_end);
+                    $('#imgPreview').attr('src', "" + doctordata[0].image + "")
+
+
+
+
+                } else {
+                    toaster.error("loading failed Data");
+
+                }
+            }).catch(function(error) {
+                toaster.error("loading failed Data");
+
+            });
+    }
+</script>
 
 
 @endsection

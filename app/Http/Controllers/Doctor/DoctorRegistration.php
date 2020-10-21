@@ -40,7 +40,8 @@ class DoctorRegistration extends Controller
                 'gender' => $gender,
                 'phone' => $phone,
                 'address' => $address,
-                'password' => $password
+                'password' => $password,
+                'status' => 0
             ]);
 
             if ($result == true) {
@@ -56,11 +57,11 @@ class DoctorRegistration extends Controller
         $data = json_decode($_POST['loginData']);
         $email = $data[0]->email;
         $password = $data[0]->password;
-        $countRow =DoctorRegistar::where('email', '=', $email)->where('password', '=', $password)->count();
-      
-        if ($countRow==1) {
+        $countRow = DoctorRegistar::where('email', '=', $email)->where('password', '=', $password)->count();
+
+        if ($countRow == 1) {
             $result = (DoctorRegistar::where('email', '=', $email)->where('password', '=', $password)->get());
-         
+
             // return $result['0']->id;
             $request->session()->put('doctorId', $result['0']->id);
             $request->session()->put('doctorName', $result['0']->name);
@@ -71,9 +72,9 @@ class DoctorRegistration extends Controller
         }
     }
 
-    function onLogout(Request $request){
+    function onLogout(Request $request)
+    {
         $request->session()->flush();
         return redirect('/doctor');
     }
-
 }

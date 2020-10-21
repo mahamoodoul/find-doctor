@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DoctorRegister extends Migration
+class DoctorCategory extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,9 @@ class DoctorRegister extends Migration
      */
     public function up()
     {
-        Schema::create('doctor_register', function (Blueprint $table) {
+        Schema::create('doctor_category', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('gender');
-            $table->string('phone');
-            $table->string('address');
-            $table->string('password');
-            $table->integer('status')->nullable();
-
+            $table->string('category');
         });
     }
 
