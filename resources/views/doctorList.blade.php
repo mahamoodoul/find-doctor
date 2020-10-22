@@ -7,21 +7,21 @@
         </div>
 
         <div class="row">
-       
+
             @foreach($doctorAllInfo as $doctorinfo)
             <div class="col-md-6 col-lg-3 ftco-animate">
                 <div class="staff">
                     <div class="img-wrap d-flex align-items-stretch">
-                        <div class="img align-self-stretch"   style="background-image: url(<?php echo $doctorinfo['0']->image  ?>);"> </div>
+                        <div class="img align-self-stretch" style="background-image: url(<?php echo $doctorinfo['0']->image  ?>);"> </div>
                     </div>
-            
+
                     <div class="text text-center">
-                    
+
                         <h3 class="mb-2">{{$doctorinfo['0']->name}}</h3>
                         <span class="position mb-2">{{$doctorinfo['0']->category}}</span>
                         <div class="faded">
-                        
-                        
+
+
                             <h3 class="mb-2">{{$doctorinfo['0']->company_name}}</h3>
                             <h3 class="mb-2">{{$doctorinfo['0']->job_position}}</h3>
 
@@ -31,6 +31,9 @@
                                 <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-google"></span></a></li>
                                 <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"></span></a></li>
                             </ul>
+                            <input class="doctor_id" type="hidden" value="{{$doctorinfo['0']->doctor_id}}">
+                            <a class="appointment takeAppointment" href="{{route('appointment.doctor', $doctorinfo['0']->doctor_id)}}">Take Appointment</a>
+                            <!-- <button type="submit" id="" ></button> -->
                         </div>
                     </div>
                 </div>

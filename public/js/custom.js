@@ -143,7 +143,7 @@ function showDoctorInUI() {
         .get("/showAllDoctorinUI")
         .then(function (response) {
             var dataJSON = response.data;
-          console.log(dataJSON);
+            console.log(dataJSON);
             $.each(dataJSON, function (i, item) {
                 $("#pdbrand").append(
                     `<option value="${dataJSON[i].id}"> ${dataJSON[i].brand_name} </option>`
@@ -154,3 +154,9 @@ function showDoctorInUI() {
             alert("There are no Brand");
         });
 }
+
+// $(".appointment").click(function () {
+
+//     var doctor_id = $(".doctor_id").val();
+//     alert(doctor_id);
+// });

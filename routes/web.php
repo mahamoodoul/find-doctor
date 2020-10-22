@@ -76,6 +76,9 @@ Route::get('/paitent_logout', 'PaitentRgisterController@PaitentLogout');
 
 
 
+//paitent single Doctor View and take appointment
+
+Route::get('/doctor/{docid}', 'AppointmentController@singleDoctorView')->name('appointment.doctor');
 
 
 

@@ -1,0 +1,22 @@
+.takeAppointment {
+    margin-top: 50px;
+
+    background: #3bc053 !important;
+    border: 1px solid #3bc053 !important;
+    color: #fff !important;
+    padding: 1em 1.5em;
+    font-size: 13px;
+    font-weight: 500;
+    overflow: hidden;
+    text-decoration: none;
+    border-radius: 50px;
+    
+    text-transform: uppercase;
+}
+
+.takeAppointment:hover {
+    background-color: #555;
+}
+
+
+

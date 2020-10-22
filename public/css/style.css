@@ -11960,7 +11960,7 @@ textarea.form-control {
     transition: all 0.3s ease;
 }
 .staff .text {
-    position: relative;
+    /* position: relative; */
     background: #fff;
     padding: 110px 30px 30px 30px;
     -moz-transition: all 0.3s ease;
