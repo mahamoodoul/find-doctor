@@ -267,7 +267,8 @@
 
                         // alert("1");
                         $(".add_text").prepend("<p style='color:red;' >You have been updated your all Information.</p>");
-                        $("#updateDataBtn").prop('disabled', true);
+                        // $("#updateDataBtn").prop('disabled', true);
+                        $('#updateDataBtn').html("Upadte Again");
                     }
 
 
@@ -496,7 +497,7 @@
                             console.log(response.data);
                             toastr.success('Updated Your Data .');
                             window.location.href="edit_profile";
-                            // location.reload();
+                        
 
                         } else {
                             toastr.error('Add New Failed');

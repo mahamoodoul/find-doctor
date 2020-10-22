@@ -65,45 +65,80 @@ class DoctorProfileController extends Controller
         $end = $data[0]->end;
 
 
+        $doctor_id = $request->session()->get('doctorId');
+
+        $countExperience = DoctorExperienceModel::where('doctor_id', '=', $doctor_id)->count();
+        $countEducation = DoctorEducationModel::where('doctor_id', '=', $doctor_id)->count();
 
 
-        $photoPath =  $request->file('image');
-        // return $data;
+        if ($countExperience == 1 && $countEducation == 1) {
+            //update
 
-        $allowedfileExtension = ['jpg', 'png'];
-        $extension = $photoPath->getClientOriginalExtension();
-        $check = in_array($extension, $allowedfileExtension);
-        if ($check) {
-            $photoPath =  $request->file('image')->store('public');
-            $photoName = (explode('/', $photoPath))[1];
-            $host = $_SERVER['HTTP_HOST'];
-            $image_location = "http://" . $host . "/storage/" . $photoName;
-            $doctor_id = $request->session()->get('doctorId');
+
+            if ($photoPath = $request->file('image')) {
+
+                $allowedfileExtension = ['jpg', 'png'];
+                $extension = $photoPath->getClientOriginalExtension();
+                $check = in_array($extension, $allowedfileExtension);
+                $photoPath =  $request->file('image')->store('public');
+                $photoName = (explode('/', $photoPath))[1];
+                $host = $_SERVER['HTTP_HOST'];
+                $image_location = "http://" . $host . "/storage/" . $photoName;
+                $result1 = DoctorEducationModel::where('doctor_id', '=', $doctor_id)->update(['institution' => $institution, 'subject' => $subject, 'starting' => $starting_data, 'ending' => $complete_date, 'category' => $category, 'degree' => $degree, 'grade' => $grade, 'birth_date' => $birthdate, 'image' => $image_location, 'phone2' => $phone2]);
+            } else {
+                $result1 = DoctorEducationModel::where('doctor_id', '=', $doctor_id)->update(['institution' => $institution, 'subject' => $subject, 'starting' => $starting_data, 'ending' => $complete_date, 'category' => $category, 'degree' => $degree, 'grade' => $grade, 'birth_date' => $birthdate, 'phone2' => $phone2]);
+            }
+
 
             $result = DoctorRegistar::where('id', '=', $doctor_id)->update(['name' => $name, 'email' => $email, 'address' => $address, 'phone' => $phone]);
 
-            $result1 = DoctorEducationModel::insert([
-                'institution' => $institution,
-                'subject' => $subject,
-                'starting' => $starting_data,
-                'ending' => $complete_date,
-                'category' => $category,
-                'degree' => $degree,
-                'grade' => $grade,
-                'birth_date' => $birthdate,
-                'image' => $image_location,
-                'phone2' => $phone2,
-                'doctor_id' => $doctor_id,
-                'doctor_status' => 0
-            ]);
-            $result2 = DoctorExperienceModel::insert([
-                'company_name' => $institution,
-                'location' => $location_of_job,
-                'job_position' => $position,
-                'period_start' => $from,
-                'period_end' => $end,
-                'doctor_id' => $doctor_id
-            ]);
+
+
+            $result2 = DoctorExperienceModel::where('doctor_id', '=', $doctor_id)->update(['company_name' => $company_name, 'location' => $location_of_job, 'job_position' => $position, 'period_start' => $from, 'period_end' => $end]);
+
+            if ($result == true || $result1 == true || $result2 == true) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } else {
+            //insert
+
+            if ($photoPath = $request->file('image')) {
+                
+                $photoPath =  $request->file('image')->store('public');
+                $photoName = (explode('/', $photoPath))[1];
+                $host = $_SERVER['HTTP_HOST'];
+                $image_location = "http://" . $host . "/storage/" . $photoName;
+
+
+                $result = DoctorRegistar::where('id', '=', $doctor_id)->update(['name' => $name, 'email' => $email, 'address' => $address, 'phone' => $phone]);
+
+                $result1 = DoctorEducationModel::insert([
+                    'institution' => $institution,
+                    'subject' => $subject,
+                    'starting' => $starting_data,
+                    'ending' => $complete_date,
+                    'category' => $category,
+                    'degree' => $degree,
+                    'grade' => $grade,
+                    'birth_date' => $birthdate,
+                    'image' => $image_location,
+                    'phone2' => $phone2,
+                    'doctor_id' => $doctor_id,
+                    'doctor_status' => 0
+                ]);
+                $result2 = DoctorExperienceModel::insert([
+                    'company_name' => $company_name,
+                    'location' => $location_of_job,
+                    'job_position' => $position,
+                    'period_start' => $from,
+                    'period_end' => $end,
+                    'doctor_id' => $doctor_id
+                ]);
+            }
+
+
 
 
             if ($result2 == true) {
@@ -115,8 +150,18 @@ class DoctorProfileController extends Controller
 
 
             // return $image_location;
+
         }
     }
+
+
+
+
+
+
+
+
+
     public function getDoctorAllInformation(Request $request)
     {
 
@@ -144,7 +189,7 @@ class DoctorProfileController extends Controller
     public function getAllDoctor(Request $request)
     {
         $doctor = array();
-        $result = json_decode(DoctorRegistar::select('id',)->orderBy('id')->where('status', '=',1)->get());
+        $result = json_decode(DoctorRegistar::select('id',)->orderBy('id')->where('status', '=', 1)->get());
         // return $result;
         for ($i = 0; $i < count($result); $i++) {
             $doctor[$i] = json_decode(DB::table('doctor_register')

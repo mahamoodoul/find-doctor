@@ -10,5 +10,5 @@ class DoctorEducationModel extends Model
     public $primaryKey = 'id';
     public $incrementing = true;
     public $keyType = 'int';
-    public  $timestamps = true;
+    public  $timestamps = false;
 }
