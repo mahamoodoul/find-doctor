@@ -117,9 +117,11 @@ $("#loginbtnclick").click(function () {
                         console.log(response.data);
                         $("#exampleModalCenter1").modal("hide");
                         toastr.success("Login Successfull Successful.");
-                        window.location.href="/"
+                        window.location.href = "/";
                     } else {
-                        toastr.error("Email or Password is incorrect Try again!!");
+                        toastr.error(
+                            "Email or Password is incorrect Try again!!"
+                        );
                     }
                 } else {
                     toastr.error("Login Failed Try again!!!");
@@ -130,3 +132,25 @@ $("#loginbtnclick").click(function () {
             });
     }
 });
+
+// show doctor in user interface
+
+showDoctorInUI();
+
+function showDoctorInUI() {
+    // alert("hello");
+    axios
+        .get("/showAllDoctorinUI")
+        .then(function (response) {
+            var dataJSON = response.data;
+          console.log(dataJSON);
+            $.each(dataJSON, function (i, item) {
+                $("#pdbrand").append(
+                    `<option value="${dataJSON[i].id}"> ${dataJSON[i].brand_name} </option>`
+                );
+            });
+        })
+        .catch(function (error) {
+            alert("There are no Brand");
+        });
+}

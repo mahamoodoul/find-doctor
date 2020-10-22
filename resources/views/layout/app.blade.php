@@ -90,7 +90,7 @@
 
    
     <script src="{{asset('js/jquery.min.js')}}"></script>
-    <script src="{{asset('js/custom.js')}}"></script>
+  
     <script src="{{asset('js/jquery-migrate-3.0.1.min.js')}}"></script>
     <script src="{{asset('js/popper.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
@@ -107,7 +107,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="{{asset('js/google-map.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/axios.min.js') }}"></script>
-
+    <script src="{{asset('js/custom.js')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>
 </body>
 

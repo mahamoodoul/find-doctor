@@ -13,9 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-});
+
+
+
+
+
+//userHome controller
+Route::get('/', 'PaitentHomecontroller@getAlldata');
+
+
 
 
 
@@ -53,6 +59,11 @@ Route::get('/getcategory', 'Doctor\\DoctorProfileController@getDoctorCatgory');
 Route::post('/upadte_doctor_info', 'Doctor\\DoctorProfileController@updateDoctorInfo');
 Route::get('/getdoctorallInfo', 'Doctor\\DoctorProfileController@getDoctorAllInformation');
 Route::get('/doctorInfoUpdate', 'Doctor\\DoctorProfileController@doctorInfoUpdate');
+
+
+
+//show all active doctorinfo in user home page
+Route::get('/showAllDoctorinUI', 'Doctor\\DoctorProfileController@getAllDoctor');
 
 
 

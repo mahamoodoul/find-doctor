@@ -46,7 +46,7 @@
                                         </div>
                                     </div>
                                 </div>
-                              
+
 
                                 <div class="col-md-6">
                                     <div class="form-group form-focus select-focus">
@@ -191,7 +191,6 @@
 
 @section('script')
 <script type="text/javascript">
-
     getdoctorData();
 
     getCategory();
@@ -495,7 +494,10 @@
                     if (response.status = 200) {
                         if (response.data == 1) {
                             console.log(response.data);
-                            toastr.success('Add New Success .');
+                            toastr.success('Updated Your Data .');
+                            window.location.href="edit_profile";
+                            // location.reload();
+
                         } else {
                             toastr.error('Add New Failed');
                         }
