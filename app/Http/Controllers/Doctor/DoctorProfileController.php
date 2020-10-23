@@ -8,7 +8,10 @@ use App\DoctorRegistar;
 use App\DoctorCategory;
 use App\DoctorEducationModel;
 use App\DoctorExperienceModel;
+use App\DoctorSlotModel;
 use Illuminate\Support\Facades\DB;
+
+use function PHPSTORM_META\type;
 
 class DoctorProfileController extends Controller
 {
@@ -105,7 +108,7 @@ class DoctorProfileController extends Controller
             //insert
 
             if ($photoPath = $request->file('image')) {
-                
+
                 $photoPath =  $request->file('image')->store('public');
                 $photoName = (explode('/', $photoPath))[1];
                 $host = $_SERVER['HTTP_HOST'];
@@ -224,6 +227,74 @@ class DoctorProfileController extends Controller
             return 1;
         } else {
             return 0;
+        }
+    }
+
+    public function doctorslotUpdate()
+    {
+        return view('doctor.slot_update');
+    }
+
+
+    public function doctorslotAdd(Request $request)
+    {
+
+        $slot = $request->input('slot');
+
+        $date = date('Y-m-d');
+        // $date = date('Y-m-d H:i:s');
+        $doctor_id = $request->session()->get('doctorId');
+        $status = 0;
+
+
+        $total_slot = DoctorSlotModel::where('doctor_id', '=', $doctor_id)->count();
+        if ($total_slot == 1) {
+            //update
+            $result = DoctorSlotModel::where('doctor_id', '=', $doctor_id)->update(['slot' =>json_encode($slot)]);
+            if ($result == true) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } elseif ($total_slot > 1) {
+            return 0;
+        } else {
+            // insert
+            $result = DoctorSlotModel::insert([
+                'slot' => json_encode($slot),
+                'doctor_id' => $doctor_id,
+                'date' => $date,
+                'status' => $status
+            ]);
+            if ($result == true) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    }
+
+
+
+
+    public function getdoctorslot(Request $request)
+    {
+        $doctor_id = $request->session()->get('doctorId');
+        $total_slot = (DoctorSlotModel::select('slot')->where('doctor_id', '=', $doctor_id)->get());
+
+        if (count($total_slot) == 1) {
+
+
+            $slot_data = trim($total_slot[0]->slot);
+            return $slot_data;
+
+
+
+            // $slot_data = substr($slot_data, 0, -1);
+            // $slot_data = substr($slot_data, 1);
+            // // return ($slot_data);
+            // $fruits_ar = explode(',', $slot_data);
+            // return $fruits_ar;
         }
     }
 }

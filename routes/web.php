@@ -59,6 +59,12 @@ Route::get('/getcategory', 'Doctor\\DoctorProfileController@getDoctorCatgory');
 Route::post('/upadte_doctor_info', 'Doctor\\DoctorProfileController@updateDoctorInfo');
 Route::get('/getdoctorallInfo', 'Doctor\\DoctorProfileController@getDoctorAllInformation');
 Route::get('/doctorInfoUpdate', 'Doctor\\DoctorProfileController@doctorInfoUpdate');
+Route::get('/slot_update', 'Doctor\\DoctorProfileController@doctorslotUpdate')->middleware('loginCheck');
+Route::post('/slotAdd', 'Doctor\\DoctorProfileController@doctorslotAdd');
+Route::get('/getDoctorSlot', 'Doctor\\DoctorProfileController@getdoctorslot');
+
+
+
 
 
 

@@ -8,6 +8,6 @@ class AppointmentController extends Controller
 {
     public function singleDoctorView($docID)
     {
-        return  $docID;
+        return view("singleDoctorAppointment");
     }
 }

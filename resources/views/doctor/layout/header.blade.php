@@ -98,6 +98,7 @@
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{ url('/doctor_profile') }}">My Profile</a>
                     <a class="dropdown-item" href="{{ url('/edit_profile') }}">Update Profile</a>
+                    <a class="dropdown-item" href="{{ url('/slot_update') }}">Slot Update</a>
                     <a style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal" class="dropdown-item" >Logout</a>
                   
                 </div>
