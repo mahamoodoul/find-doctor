@@ -18,5 +18,19 @@
     background-color: #555;
 }
 
+.doctorsingle{
+    margin-top: 50px;
+    margin-bottom: 50px;
+   
+}
+.doc_body{
+    width: 500px;
+    height: 600px;
+}
 
+.imageDoc{
+    width: 150px;
+    height: 150px;
+   
+}
 

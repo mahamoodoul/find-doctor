@@ -14,7 +14,7 @@ class PaitentRgisterController extends Controller
         $rand_num = mt_rand(100000, 999999);
 
 
-        $paitent_id = 'Paitent-' . ($rand_num);
+        $paitent_id = 'paitent-' . ($rand_num);
         $name = $data[0]->name;
         $email = $data[0]->email;
         $number = $data[0]->number;

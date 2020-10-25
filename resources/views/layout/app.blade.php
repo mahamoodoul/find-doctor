@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}">
-    
+
     <link rel="stylesheet" href="{{asset('css/bootstrap-datepicker.css')}}">
     <link rel="stylesheet" href="{{asset('css/jquery.timepicker.css')}}">
 
@@ -36,7 +36,7 @@
     <!-- header load -->
     @include('layout.topHeader')
 
-   
+
 
     <!-- header end -->
 
@@ -89,9 +89,9 @@
 
 
 
-   
+
     <script src="{{asset('js/jquery.min.js')}}"></script>
-  
+
     <script src="{{asset('js/jquery-migrate-3.0.1.min.js')}}"></script>
     <script src="{{asset('js/popper.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
@@ -110,6 +110,7 @@
     <script type="text/javascript" src="{{ asset('js/axios.min.js') }}"></script>
     <script src="{{asset('js/custom.js')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>
+    @yield('script')
 </body>
 
 </html>

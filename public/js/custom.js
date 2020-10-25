@@ -1,4 +1,4 @@
-//login registration
+//login registration button
 
 $("#clickforRegistration").click(function () {
     $("#exampleModalCenter1").modal("hide");
@@ -133,30 +133,6 @@ $("#loginbtnclick").click(function () {
     }
 });
 
-// show doctor in user interface
 
-showDoctorInUI();
 
-function showDoctorInUI() {
-    // alert("hello");
-    axios
-        .get("/showAllDoctorinUI")
-        .then(function (response) {
-            var dataJSON = response.data;
-            console.log(dataJSON);
-            $.each(dataJSON, function (i, item) {
-                $("#pdbrand").append(
-                    `<option value="${dataJSON[i].id}"> ${dataJSON[i].brand_name} </option>`
-                );
-            });
-        })
-        .catch(function (error) {
-            alert("There are no Brand");
-        });
-}
 
-// $(".appointment").click(function () {
-
-//     var doctor_id = $(".doctor_id").val();
-//     alert(doctor_id);
-// });

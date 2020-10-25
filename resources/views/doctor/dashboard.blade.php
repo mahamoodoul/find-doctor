@@ -45,7 +45,7 @@
                 </div>
             </div>
         </div>
-      
+
         <div class="row">
             <div class="col-12 col-md-6 col-lg-8 col-xl-8">
                 <div class="card">
@@ -54,101 +54,22 @@
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table class="table mb-0">
-                                <thead class="d-none">
+                            <table  class="table mb-0">
+                                <thead class="">
                                     <tr>
                                         <th>Patient Name</th>
-                                        <th>Doctor Name</th>
-                                        <th>Timing</th>
-                                        <th class="text-right">Status</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Message</th>
+                                        <th class="">Status</th>
+                                        <th class="text-right">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="min-width: 200px;">
-                                            <a class="avatar" href="profile.html">B</a>
-                                            <h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Appointment With</h5>
-                                            <p>Dr. Cristina Groves</p>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Timing</h5>
-                                            <p>7.00 PM</p>
-                                        </td>
-                                        <td class="text-right">
-                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="min-width: 200px;">
-                                            <a class="avatar" href="profile.html">B</a>
-                                            <h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Appointment With</h5>
-                                            <p>Dr. Cristina Groves</p>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Timing</h5>
-                                            <p>7.00 PM</p>
-                                        </td>
-                                        <td class="text-right">
-                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="min-width: 200px;">
-                                            <a class="avatar" href="profile.html">B</a>
-                                            <h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Appointment With</h5>
-                                            <p>Dr. Cristina Groves</p>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Timing</h5>
-                                            <p>7.00 PM</p>
-                                        </td>
-                                        <td class="text-right">
-                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="min-width: 200px;">
-                                            <a class="avatar" href="profile.html">B</a>
-                                            <h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Appointment With</h5>
-                                            <p>Dr. Cristina Groves</p>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Timing</h5>
-                                            <p>7.00 PM</p>
-                                        </td>
-                                        <td class="text-right">
-                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="min-width: 200px;">
-                                            <a class="avatar" href="profile.html">B</a>
-                                            <h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Appointment With</h5>
-                                            <p>Dr. Cristina Groves</p>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Timing</h5>
-                                            <p>7.00 PM</p>
-                                        </td>
-                                        <td class="text-right">
-                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
-                                        </td>
-                                    </tr>
+                                <tbody id="appointmentTable">
+                                    
+
+
+
                                 </tbody>
                             </table>
                         </div>
@@ -288,220 +209,56 @@
                     </div>
                 </div>
             </div>
-         
+
         </div>
     </div>
-    <div class="notification-box">
-        <div class="msg-sidebar notifications msg-noti">
-            <div class="topnav-dropdown-header">
-                <span>Messages</span>
-            </div>
-            <div class="drop-scroll msg-list-scroll" id="msg_list">
-                <ul class="list-box">
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">R</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Richard Miles </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item new-message">
-                                <div class="list-left">
-                                    <span class="avatar">J</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">John Doe</span>
-                                    <span class="message-time">1 Aug</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">T</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Tarah Shropshire </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">M</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Mike Litorus</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">C</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Catherine Manseau </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">D</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Domenic Houston </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">B</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Buster Wigton </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">R</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Rolland Webber </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">C</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Claire Mapes </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">M</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Melita Faucher</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">J</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Jeffery Lalor</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">L</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Loren Gatlin</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">T</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Tarah Shropshire</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="topnav-dropdown-footer">
-                <a href="chat.html">See all messages</a>
-            </div>
-        </div>
-    </div>
+
 </div>
 </div>
 
+
+@endsection
+
+
+
+
+@section('script')
+<script type="text/javascript">
+
+getAppointmentInfo();
+    function getAppointmentInfo() {
+       
+            axios.get('/getappointment')
+                .then(function(response) {
+
+                    if (response.status = 200) {
+
+
+                        var appointmentData = response.data;
+                        console.log(appointmentData);
+                        $.each(appointmentData, function(i, item) {
+                            $('<tr>').html(
+
+                                "<td>" + appointmentData[i].paitent_name + " </td>" +
+                                "<td>" + appointmentData[i].date + " </td>" +
+                                "<td>" + appointmentData[i].slot + " </td>" +
+                                "<td>" + appointmentData[i].message + " </td>" +
+                                "<td>" + "ok" + " </td>" +
+                                "<td><a class='productDeleteIcon' data-id=" + appointmentData[i].paitent_id +
+                                " ><i class='fas fa-trash-alt'></i>aa</a> </td>"
+                            ).appendTo('#appointmentTable');
+                        });
+
+                    } else {
+                        toaster.error("loading failed Data");
+
+                    }
+                }).catch(function(error) {
+                    toaster.error("loading failed Data");
+
+                });
+      
+    }
+</script>
 
 @endsection

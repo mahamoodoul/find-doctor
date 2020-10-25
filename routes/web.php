@@ -62,6 +62,8 @@ Route::get('/doctorInfoUpdate', 'Doctor\\DoctorProfileController@doctorInfoUpdat
 Route::get('/slot_update', 'Doctor\\DoctorProfileController@doctorslotUpdate')->middleware('loginCheck');
 Route::post('/slotAdd', 'Doctor\\DoctorProfileController@doctorslotAdd');
 Route::get('/getDoctorSlot', 'Doctor\\DoctorProfileController@getdoctorslot');
+//get paitent appointment
+Route::get('/getappointment', 'Doctor\\PaitentAppointmentController@getUpcommingAppointment');
 
 
 
@@ -84,7 +86,9 @@ Route::get('/paitent_logout', 'PaitentRgisterController@PaitentLogout');
 
 //paitent single Doctor View and take appointment
 
-Route::get('/doctor/{docid}', 'AppointmentController@singleDoctorView')->name('appointment.doctor');
+Route::get('/doctor/{docid}', 'AppointmentController@singleDoctorView')->name('appointment.doctor')->middleware('PaitentLoginCheck');
+
+Route::post('/appointmentinfo', 'AppointmentController@TakeAppointment');
 
 
 
