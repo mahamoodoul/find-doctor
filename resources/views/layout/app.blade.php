@@ -106,6 +106,7 @@
     <script src="{{asset('js/jquery.timepicker.min.js')}}"></script>
     <script src="{{asset('js/scrollax.min.js')}}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
     <script src="{{asset('js/google-map.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/axios.min.js') }}"></script>
     <script src="{{asset('js/custom.js')}}"></script>

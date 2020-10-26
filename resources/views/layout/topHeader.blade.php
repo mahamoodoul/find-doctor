@@ -1,3 +1,38 @@
+@if(Session::get('id'))
+<div id="videolinkDiv" class="py-1 top">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4  align-items-start">
+                <p class="mb-0 w-100 mt-2">
+                    <span class="fa fa-paper-plane"></span>
+                    <span class="text">Your Upcomming Appointment Schedule</span>
+                </p>
+            </div>
+            <div class="col-sm-4   topper align-items-center ">
+                <p class="mb-0 w-100 mt-2">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <span id="date" class="text" >Date</span>
+                        </div>
+                        <div class="col-sm-4">
+                        <span id="time" class="text" >Time</span>
+                        </div>
+                        <div class="col-sm-4">
+                        <span id="countdown" class="text" >Time Left</span>
+                        </div>
+                    </div>
+                </p>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4   justify-content-end">
+                <p class="mb-0 register-link"><a target="_blank"  id="meetlink"  href="" class="btn btn-primary">Click Here to Join</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+
+
+
 <div class="py-3">
     <div class="container">
         <div class="row d-flex align-items-start align-items-center px-3 px-md-0">
@@ -69,11 +104,11 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-           
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                 <a class="btn btn-primary" href="{{ url('/paitent_logout') }}">Yes</a>
-               
+
             </div>
         </div>
     </div>

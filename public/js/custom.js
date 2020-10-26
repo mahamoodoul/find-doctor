@@ -133,6 +133,108 @@ $("#loginbtnclick").click(function () {
     }
 });
 
+//video link show in header
+
+showlink();
+function showlink() {
+    axios
+        .get("/getvideolink")
+        .then(function (response) {
+            var dataJSON = response.data;
+            var appointment_id = dataJSON.app_id;
+            var date = dataJSON.date;
+            var time = dataJSON.slot;
+            var space = " ";
+            var position = 4;
+            var timeformat = [
+                time.slice(0, position),
+                space,
+                time.slice(position),
+            ].join("");
+
+
+
+
+         
+            var today_date = TodaysDate();
+            dt1 = new Date(date);
+            dt2 = new Date(today_date);
+            var diff = diff_hours(dt1, dt2);
+            var day = diff / 24;
+            console.log(day);
+            
+
+           
+    
+
+
+            var nowtime = formatAMPM(new Date());
+            console.log(nowtime);
+            var end = moment(timeformat, "hh:mm A");
+            var start = moment(nowtime, "hh:mm A");
+            var duration = moment.duration(end.diff(start));
+            var totalmin = duration.asMinutes();
+            var final_time = (Math.floor(totalmin / 60) + ':' + totalmin % 60)
+            console.log(final_time);
+
+           
+            var myDate = getfutureDate(day);
+            console.log(myDate);
+
+            var final=myDate+' '+final_time+':00';
+            console.log(final);
+
+            
+          
+
+            $("#date").html(date);
+            $("#time").html(timeformat);
+            $("#meetlink").attr("href", dataJSON.link);
+        })
+        .catch(function (error) {
+            $("#videolinkDiv").addClass("d-none");
+        });
+}
+
+function diff_hours(dt2, dt1) {
+    var diff = (dt2.getTime() - dt1.getTime()) / 1000;
+    diff /= 60 * 60;
+    return Math.abs(Math.round(diff));
+}
+
+function formatAMPM(date) {
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? "pm" : "am";
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    var strTime = hours + ":" + minutes + " " + ampm;
+    return strTime;
+}
+console.log(formatAMPM(new Date()));
+
+function TodaysDate() {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    var yyyy = today.getFullYear();
+    today = mm + "-" + dd + "-" + yyyy;
+    return today;
+}
+
+
+//for future Date
+function getfutureDate(day) {
+    // var today = new Date();
+    var today = new Date(new Date().getTime()+(day*24*60*60*1000));
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    var yyyy = today.getFullYear();
+    today = mm + "-" + dd + "-" + yyyy;
+    return today;
+}
+
 
 
 

@@ -30,7 +30,7 @@
                     <div class="form-group">
                         <div class="input-wrap">
                             <div class="icon"><span class="fa fa-calendar"></span></div>
-                            <input id="date" type="text" class="form-control appointment_date" placeholder="Date">
+                            <input id="app_date" type="text" class="form-control appointment_date" placeholder="Date">
                         </div>
                     </div>
                     <div class="form-group">
@@ -73,7 +73,7 @@
 
         var doc_id = $('#doc_id').val();
 
-        var date = $('#date').val();
+        var date = $('#app_date').val();
         var slot = $('#slot').val();
 
         var message = $('#message').val();

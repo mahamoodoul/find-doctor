@@ -33,9 +33,9 @@
     <script src="{{asset('assets/js/jquery.slimscroll.js')}}"></script>
     <script src="{{asset('assets/js/Chart.bundle.js')}}"></script>
     <script src="{{asset('assets/js/chart.js')}}"></script>
-    <script src="assets/js/select2.min.js"></script>
-    <script src="assets/js/moment.min.js"></script>
-    <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="{{asset('assets/js/select2.min.js')}}"></script>
+    <script src="{{asset('assets/js/moment.min.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap-datetimepicker.min.js')}}"></script>
     <script src="{{asset('assets/js/mycustom.js')}}"></script>
     <script src="{{asset('assets/js/app.js')}}"></script>
 

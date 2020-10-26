@@ -54,7 +54,7 @@
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table  class="table mb-0">
+                            <table class="table mb-0">
                                 <thead class="">
                                     <tr>
                                         <th>Patient Name</th>
@@ -62,16 +62,17 @@
                                         <th>Time</th>
                                         <th>Message</th>
                                         <th class="">Status</th>
-                                        <th class="text-right">Action</th>
+                                        <th class="">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="appointmentTable">
-                                    
+
 
 
 
                                 </tbody>
                             </table>
+                            <p id="paitent_id"></p>
                         </div>
                     </div>
                 </div>
@@ -224,40 +225,58 @@
 
 @section('script')
 <script type="text/javascript">
+    getAppointmentInfo();
 
-getAppointmentInfo();
     function getAppointmentInfo() {
-       
-            axios.get('/getappointment')
-                .then(function(response) {
 
-                    if (response.status = 200) {
+        axios.get('/getappointment')
+            .then(function(response) {
+
+                if (response.status = 200) {
 
 
-                        var appointmentData = response.data;
-                        console.log(appointmentData);
-                        $.each(appointmentData, function(i, item) {
-                            $('<tr>').html(
+                    var appointmentData = response.data;
+                    console.log(appointmentData);
+                    $.each(appointmentData, function(i, item) {
+                        $('<tr>').html(
 
-                                "<td>" + appointmentData[i].paitent_name + " </td>" +
-                                "<td>" + appointmentData[i].date + " </td>" +
-                                "<td>" + appointmentData[i].slot + " </td>" +
-                                "<td>" + appointmentData[i].message + " </td>" +
-                                "<td>" + "ok" + " </td>" +
-                                "<td><a class='productDeleteIcon' data-id=" + appointmentData[i].paitent_id +
-                                " ><i class='fas fa-trash-alt'></i>aa</a> </td>"
-                            ).appendTo('#appointmentTable');
-                        });
+                            "<td>" + appointmentData[i].paitent_name + " </td>" +
+                            "<td>" + appointmentData[i].date + " </td>" +
+                            "<td>" + appointmentData[i].slot + " </td>" +
 
-                    } else {
-                        toaster.error("loading failed Data");
+                            //eikhane if condition apply ki kora jabe?
+                            "<td>" + appointmentData[i].message + " </td>" +
+                            (appointmentData[i].status == 0 ?
+                                "<td> <button class='btn btn-primary' type='button'>Pending</button> </td>" :
+                                "<td><button class='btn btn-secondary' type='button'>Completed</button> </td>") +
 
-                    }
-                }).catch(function(error) {
+                                "<td><a href='/paitentdescription/"+ appointmentData[i].paitent_id+"/"+ appointmentData[i].date + "/" + appointmentData[i].slot +"' class='checkpaitent btn btn-primary'>Take up </td>"
+                        ).appendTo('#appointmentTable');
+
+                        
+
+                        // $(".checkpaitent").click(function() {
+
+                        //     var id = $(this).data('id');
+                        //     alert(id);
+                        //     $('#paitent_id').html(id);
+                          
+                        //     // $('#productModalCourse').modal('show');
+
+                        // })
+                    });
+
+                } else {
                     toaster.error("loading failed Data");
 
-                });
-      
+                }
+            }).catch(function(error) {
+                toaster.error("loading failed Data");
+
+            });
+
+
+
     }
 </script>
 

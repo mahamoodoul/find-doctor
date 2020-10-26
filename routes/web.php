@@ -65,6 +65,9 @@ Route::get('/getDoctorSlot', 'Doctor\\DoctorProfileController@getdoctorslot');
 //get paitent appointment
 Route::get('/getappointment', 'Doctor\\PaitentAppointmentController@getUpcommingAppointment');
 
+//doctor assign video link for paitent
+Route::get('/paitentdescription/{p_id}/{date}/{slot}', 'Doctor\\PaitentAppointmentController@getvideolinkPaitent');
+Route::post('/vidoeLink', 'Doctor\\PaitentAppointmentController@SendVideoLink');
 
 
 
@@ -85,10 +88,13 @@ Route::get('/paitent_logout', 'PaitentRgisterController@PaitentLogout');
 
 
 //paitent single Doctor View and take appointment
-
 Route::get('/doctor/{docid}', 'AppointmentController@singleDoctorView')->name('appointment.doctor')->middleware('PaitentLoginCheck');
-
 Route::post('/appointmentinfo', 'AppointmentController@TakeAppointment');
+
+
+//get video link
+Route::get('/getvideolink', 'AppointmentController@GetVideoLink');
+
 
 
 
