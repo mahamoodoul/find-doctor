@@ -33,12 +33,12 @@
                     <div class="form-group row">
                         <label class="col-form-label col-md-2">Add Slot</label>
                         <div class="col-md-10">
-                            <select id="slotSelect" multiple class="custom-select form-control  browser-default custom-select" >
+                            <select id="slotSelect" multiple class="custom-select form-control  browser-default custom-select">
                                 <option value="0">-- Select --</option>
-                                <option value="8:00am">8:00 am</option>
-                                <option value="8:30am">8:30 am</option>
-                                <option value="9:00am">9:00 am</option>
-                                <option value="9:30am">9:30 am</option>
+                                <option value="8:00am">08:00 am</option>
+                                <option value="8:30am">08:30 am</option>
+                                <option value="9:00am">09:00 am</option>
+                                <option value="9:30am">09:30 am</option>
                                 <option value="10:00am">10:00 am</option>
                                 <option value="10:30am">10:30 am</option>
                                 <option value="11:00am">11:00 am</option>
@@ -148,7 +148,7 @@
                             '</div>'
                         );
                     });
-                   
+
                     $("#showslot").show();
                 } else {
                     toaster.error("loading failed Data");

@@ -1,5 +1,7 @@
 //login registration button
 
+// const { indexOf } = require("lodash");
+
 $("#clickforRegistration").click(function () {
     $("#exampleModalCenter1").modal("hide");
 });
@@ -134,69 +136,89 @@ $("#loginbtnclick").click(function () {
 });
 
 //video link show in header
-
-showlink();
+setInterval(showlink,1000);
+// showlink();
 function showlink() {
     axios
         .get("/getvideolink")
         .then(function (response) {
             var dataJSON = response.data;
+            console.log(dataJSON);
             var appointment_id = dataJSON.app_id;
             var date = dataJSON.date;
             var time = dataJSON.slot;
             var space = " ";
-            var position = 4;
-            var timeformat = [
-                time.slice(0, position),
-                space,
-                time.slice(position),
-            ].join("");
-
-
-
-
-         
-            var today_date = TodaysDate();
-            dt1 = new Date(date);
-            dt2 = new Date(today_date);
-            var diff = diff_hours(dt1, dt2);
-            var day = diff / 24;
-            console.log(day);
-            
-
-           
-    
-
-
-            var nowtime = formatAMPM(new Date());
-            console.log(nowtime);
-            var end = moment(timeformat, "hh:mm A");
-            var start = moment(nowtime, "hh:mm A");
-            var duration = moment.duration(end.diff(start));
-            var totalmin = duration.asMinutes();
-            var final_time = (Math.floor(totalmin / 60) + ':' + totalmin % 60)
-            console.log(final_time);
-
-           
-            var myDate = getfutureDate(day);
-            console.log(myDate);
-
-            var final=myDate+' '+final_time+':00';
-            console.log(final);
-
-            
-          
-
+            var position = 5;
+            var timeformat = [time.slice(0, position),space,time.slice(position),].join("");
             $("#date").html(date);
             $("#time").html(timeformat);
-            $("#meetlink").attr("href", dataJSON.link);
+          
+
+
+            if(time.includes('pm')){
+                var getfisrttwo=(time.charAt(0)+""+time.charAt(1));
+                var valuetf=parseInt(getfisrttwo);
+                if (valuetf == 12){
+                    valuetf=12;
+                }else{
+                    valuetf=valuetf+12;
+                }
+            }
+
+            if(time.includes('am')){
+                var getfisrttwo=(time.charAt(0)+""+time.charAt(1));
+                var valuetf=parseInt(getfisrttwo);
+                if(valuetf== 12){
+                    valuetf="00";
+                }
+            }
+            var getmin=(time.charAt(3)+""+time.charAt(4));
+            var newTime=String(valuetf+":"+getmin+":00");
+            console.log(newTime);
+
+
+
+
+
+
+            var today_date = TodaysDate();
+            dt2 = new Date(date);
+            dt1 = new Date(today_date);  
+            var diff = diff_hours(dt1, dt2);
+            var day =Math.round(diff / 24) ;
+
+
+
+            var myFutureDate = getfutureDate(day);
+            var adddateTime=myFutureDate+" "+newTime;
+
+            console.log(adddateTime);
+           
+
+            var stamp_date=Math.abs((new Date(adddateTime).getTime()/1000).toFixed(0));
+            var stamp_current=Math.abs((new Date().getTime()/1000).toFixed(0));
+            diffs=stamp_date-stamp_current;
+            var daystamp=Math.floor(diffs/86400);
+            var hourstamp=Math.floor(diffs/3600)%24;
+            var minstamp=Math.floor(diffs/60)%60;
+            var secstamp=diffs % 60;
+            var timeStamps=daystamp+" Days:"+hourstamp+":"+minstamp+":"+secstamp;
+            $("#countdown").html(timeStamps);
+            if(hourstamp <='00' && minstamp <='00' && secstamp <='00'){
+                $("#meetlink").attr("href", dataJSON.link);    
+                $('#meetlink').removeClass('disabled');
+                    $("#countdown").html("");
+            }
+           
+
+
         })
         .catch(function (error) {
             $("#videolinkDiv").addClass("d-none");
         });
 }
 
-function diff_hours(dt2, dt1) {
+function diff_hours(dt1, dt2) {
     var diff = (dt2.getTime() - dt1.getTime()) / 1000;
     diff /= 60 * 60;
     return Math.abs(Math.round(diff));
@@ -219,22 +241,24 @@ function TodaysDate() {
     var dd = String(today.getDate()).padStart(2, "0");
     var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
     var yyyy = today.getFullYear();
-    today = mm + "-" + dd + "-" + yyyy;
+    // today = mm + "-" + dd + "-" + yyyy;
+    today = yyyy + "-" + mm + "-" + dd;
     return today;
 }
-
 
 //for future Date
 function getfutureDate(day) {
     // var today = new Date();
-    var today = new Date(new Date().getTime()+(day*24*60*60*1000));
+    var today = new Date(new Date().getTime() + day * 24 * 60 * 60 * 1000);
     var dd = String(today.getDate()).padStart(2, "0");
     var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
     var yyyy = today.getFullYear();
-    today = mm + "-" + dd + "-" + yyyy;
+    // today = mm + "-" + dd + "-" + yyyy;
+    today = yyyy + "-" + mm + "-" + dd;
     return today;
 }
 
-
-
-
+function setCharAt(str, index, chr) {
+    if (index > str.length - 1) return str;
+    return str.substring(0, index) + chr + str.substring(index + 1);
+}

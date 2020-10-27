@@ -33,4 +33,12 @@
     height: 150px;
    
 }
+.timeCountdown{
+    font-weight: 900;
+    color: red;
+}
 
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+  }

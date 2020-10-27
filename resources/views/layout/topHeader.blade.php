@@ -14,17 +14,17 @@
                         <div class="col-sm-4">
                             <span id="date" class="text" >Date</span>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                         <span id="time" class="text" >Time</span>
                         </div>
-                        <div class="col-sm-4">
-                        <span id="countdown" class="text" >Time Left</span>
+                        <div class="col-sm-5">
+                        <span id="countdown" class="timeCountdown text" ></span>
                         </div>
                     </div>
                 </p>
             </div>
             <div class="col-sm-4 col-md-4 col-lg-4   justify-content-end">
-                <p class="mb-0 register-link"><a target="_blank"  id="meetlink"  href="" class="btn btn-primary">Click Here to Join</a></p>
+                <p class="mb-0 register-link"><a  disabled="disabled" target="_blank"  id="meetlink"  href="" class="disabled btn btn-primary">Click Here to Join</a></p>
             </div>
         </div>
     </div>
