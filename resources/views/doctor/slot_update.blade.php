@@ -35,10 +35,7 @@
                         <div class="col-md-10">
                             <select id="slotSelect" multiple class="custom-select form-control  browser-default custom-select">
                                 <option value="0">-- Select --</option>
-                                <option value="8:00am">08:00 am</option>
-                                <option value="8:30am">08:30 am</option>
-                                <option value="9:00am">09:00 am</option>
-                                <option value="9:30am">09:30 am</option>
+                              
                                 <option value="10:00am">10:00 am</option>
                                 <option value="10:30am">10:30 am</option>
                                 <option value="11:00am">11:00 am</option>
@@ -50,6 +47,10 @@
                                 <option value="02:00pm">02:00 pm</option>
                                 <option value="02:30pm">02:30 pm</option>
                                 <option value="03:00pm">03:00 pm</option>
+                                <option value="08:00am">08:00 am</option>
+                                <option value="08:30am">08:30 am</option>
+                                <option value="09:00am">09:00 am</option>
+                                <option value="09:30am">09:30 am</option>
 
                             </select>
                         </div>
