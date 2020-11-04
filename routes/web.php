@@ -70,6 +70,12 @@ Route::get('/paitentdescription/{p_id}/{date}/{slot}', 'Doctor\\PaitentAppointme
 Route::post('/vidoeLink', 'Doctor\\PaitentAppointmentController@SendVideoLink');
 
 
+//doc report upload
+Route::post('/reportdoc', 'Doctor\\PaitentAppointmentController@getdocreport');
+
+Route::post('generate-pdf','Doctor\\PaitentAppointmentController@generatePDF');
+
+
 
 
 

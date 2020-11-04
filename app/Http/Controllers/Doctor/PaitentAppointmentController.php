@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Doctor;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
+use PDF;
 use App\AppointmentModel;
 use App\VideoModel;
 
@@ -31,9 +33,13 @@ class PaitentAppointmentController extends Controller
 
         $doctor_id = $request->session()->get('doctorId');
         $result = (AppointmentModel::where('doc_id', '=', $doctor_id)->where('date', '=', $date)->where('slot', '=', $slot)->get());
-        // return $result;
+        $app_id = $result[0]->id;
+        $link = (VideoModel::select('link')->where('appointment_id', '=', $app_id)->get());
+
+
         return view('doctor/paitentsingleinfo', [
-            'app_info' => ($result)
+            'app_info' => ($result),
+            'video_link' => $link
         ]);
     }
 
@@ -66,5 +72,40 @@ class PaitentAppointmentController extends Controller
         } else {
             return 0;
         }
+    }
+
+    public function getdocreport(Request $request)
+    {
+
+        // $name= $request->file('doc')->getClientOriginalName();
+        // // $fileName = $request->get('doc') . '.' . $request->file('doc')->extension();
+        // $namefile = $request->file('doc')->storeAs('Report', $name);
+        // $host = $_SERVER['HTTP_HOST'];
+        // $location = "http://" . $host . "/storage/" . $namefile;
+        // return $location;
+
+
+
+
+    }
+
+    public function generatePDF()
+    {
+
+        $data = json_decode($_POST['data']);
+        return $data;
+
+        
+        $data = [
+            'title' => 'First PDF for Coding Driver',
+            'heading' => 'Hello from Coding Driver',
+            'content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry '
+        ];
+
+        $pdf = PDF::loadView('doctor.genarate_pdf', $data);
+
+        return $pdf->stream();
+
+        //   return $pdf->download('codingdriver1.pdf');
     }
 }
