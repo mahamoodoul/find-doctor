@@ -82,7 +82,9 @@
                 <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
                 <li class="nav-item"><a href="doctors.html" class="nav-link">Doctors</a></li>
                 <li class="nav-item"><a href="department.html" class="nav-link">Departments</a></li>
-                <li class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></li>
+                @if(Session::get('id'))
+                <li class="nav-item"><a href="{{url('paitent_dashboard')}}" class="nav-link">Dashboard</a></li>
+                @endif
                 <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
                 <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
                 <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>

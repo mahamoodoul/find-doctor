@@ -29,6 +29,8 @@ Route::get('/about', function () {
     return view('about');
 });
 
+
+
 Route::get('/doctor', function () {
     return view('/doctor/register');
 });
@@ -100,6 +102,13 @@ Route::post('/appointmentinfo', 'AppointmentController@TakeAppointment');
 
 //get video link
 Route::get('/getvideolink', 'AppointmentController@GetVideoLink');
+
+//paitent dashboard
+Route::get('/paitent_dashboard', 'PaitentDashboardController@Home');
+
+//appointment delete
+
+Route::post('/appointmentDel', 'PaitentDashboardController@delAppointment');
 
 
 
