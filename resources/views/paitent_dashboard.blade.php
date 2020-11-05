@@ -8,7 +8,7 @@
 
 @if (count($app_info)>0)
 <section style="margin-top: 50px;" class="container">
-    <h3>Your Appointment List</h3>
+    <h3>Your Upcomming Appointment List</h3>
     <table class="table">
         <thead class="black white-text">
             <tr>
@@ -35,6 +35,55 @@
 
 </section>
 @endif
+
+
+
+<section style="margin-top: 50px;" class="container">
+    <h3>Your Completed Appointment List</h3>
+    <table class="table">
+        <thead class="black white-text">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Doctor Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">View Report</th>
+                <th scope="col">Report</th>
+            </tr>
+        </thead>
+        <tbody id="datatable">
+
+
+            <tr>
+                <th scope="row">1</th>
+                <td>ccccccc</td>
+                <td>ddddddd</td>
+                <td>eeeeeee</td>
+                <td> <button data-id="" class="app_del btn btn-secondary">Yes</button></td>
+                <td> <button data-id="" class="app_del btn btn-secondary">Download</button></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- Modal -->
