@@ -1,0 +1,38 @@
+.header{
+    margin: 0px 5px 50px 5px;
+    text-align: center;
+    border:1px solid green;
+    background-color: rgb(56,164,160);
+    background: -moz-linear-gradient(left, rgb(56,164,160) 0%, rgb(203,133,35) 40%, rgb(117,31,100) 100%);
+    background: -webkit-linear-gradient(left, rgb(56,164,160) 0%, rgb(203,133,35) 40%, rgb(117,31,100) 100%);
+    background: linear-gradient(to right, rgb(56,164,160) 0%, rgb(203,133,35) 40%, rgb(117,31,100) 100%);;
+}
+.address{
+  
+    font-weight: 700;
+}
+
+.medicine{
+    margin-left: 80px;
+    border: 1px solid black;
+    align-items: center;
+}
+
+.paitent{
+  
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+   
+}
+
+.paitent > div {
+    background-color: #f1f1f1;
+    width: 300px;
+    margin: 10px;
+   
+    line-height: 75px;
+    font-size: 30px;
+    align-items: center;
+   
+  }

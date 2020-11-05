@@ -4,10 +4,17 @@ namespace App\Http\Controllers\Doctor;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use DB;
+// use DB;
 use PDF;
 use App\AppointmentModel;
 use App\VideoModel;
+use App\DoctorRegistar;
+use App\DoctorEducationModel;
+use App\DoctorExperienceModel;
+use App\PaitentRegisterModel;
+use App\PrescriptionModel;
+use Illuminate\Support\Facades\DB;
+use PaitentRegister;
 
 class PaitentAppointmentController extends Controller
 {
@@ -74,38 +81,101 @@ class PaitentAppointmentController extends Controller
         }
     }
 
+
+
+
+
     public function getdocreport(Request $request)
     {
 
-        // $name= $request->file('doc')->getClientOriginalName();
-        // // $fileName = $request->get('doc') . '.' . $request->file('doc')->extension();
-        // $namefile = $request->file('doc')->storeAs('Report', $name);
-        // $host = $_SERVER['HTTP_HOST'];
-        // $location = "http://" . $host . "/storage/" . $namefile;
-        // return $location;
+        $data = json_decode($_POST['pdf_info']);
+
+        $appid = $data[0]->app_id;
+        $p_id = $data[0]->p_id;
+        $doctor_id = $request->session()->get('doctorId');
 
 
+        $name = $request->file('pdf')->getClientOriginalName();
+        $allowed =  array('pdf');
+        $ext = pathinfo($name, PATHINFO_EXTENSION);
+        if (!in_array($ext, $allowed)) {
+            return 2;
+        } else {
 
+            // $fileName = $request->get('doc') . '.' . $request->file('doc')->extension();
+            $namefile = $request->file('pdf')->storeAs('public/Report', $name);
+            $host = $_SERVER['HTTP_HOST'];
+            $location = "http://" . $host . "/storage/" . $namefile;
 
+            $result = PrescriptionModel::insert([
+                'appointment_id' => $appid,
+                'doc_id' => $doctor_id,
+                'paitent_id' => $p_id,
+                'prescriton_link' => $location,
+                'status' => 0
+            ]);
+            if ($result == true) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
     }
+
+
+
+
+
+
+
+
+
 
     public function generatePDF()
     {
 
         $data = json_decode($_POST['data']);
-        return $data;
+        $appid = $data[0]->app_id;
+        $app_info = (AppointmentModel::select("doc_id")->where('id', '=', $appid)->get());
+        $doc_id = $app_info[0]->doc_id;
 
-        
-        $data = [
-            'title' => 'First PDF for Coding Driver',
-            'heading' => 'Hello from Coding Driver',
-            'content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry '
+
+        $doctorInfo =  DB::table('doctor_register')
+            ->select('doctor_register.name', 'doctor_education.institution', 'doctor_education.subject', 'doctor_education.category', 'doctor_education.degree', 'doctor_experience.company_name', 'doctor_experience.location', 'doctor_experience.job_position')
+            ->join('doctor_education', 'doctor_education.doctor_id', '=', 'doctor_register.id')
+            ->join('doctor_experience', 'doctor_experience.doctor_id', '=', 'doctor_register.id')
+            ->where('doctor_register.id', '=', $doc_id)
+            ->where('doctor_education.doctor_id', '=', $doc_id)
+            ->where('doctor_experience.doctor_id', '=', $doc_id)
+            ->get();
+
+        // return $doctorInfo;
+
+        $p_id = $data[0]->p_id;
+        $paitent_info = PaitentRegisterModel::select("name", "age", "phone", "blood_group")->where('paitent_id', '=', $p_id)->get();
+
+
+        $todaydate = date("Y-m-d h:i:sa");
+
+
+        $medicine = $data[0]->prescription;
+        $med_name = $medicine[0];
+        $med_time = $medicine[1];
+        $procedure = $medicine[2];
+
+
+        $pres_info = [
+            'med_name' => $med_name,
+            'med_time' => $med_time,
+            'procedure' => $procedure,
+            'doc_info' => $doctorInfo,
+            'paitent_info' => $paitent_info,
+            'app_id' => $appid,
+            'date' => $todaydate
         ];
 
-        $pdf = PDF::loadView('doctor.genarate_pdf', $data);
+        $pdf = PDF::loadView('doctor.genarate_pdf', $pres_info);
 
-        return $pdf->stream();
-
-        //   return $pdf->download('codingdriver1.pdf');
+        return $pdf->download($p_id . '.pdf');
     }
 }

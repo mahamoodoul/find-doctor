@@ -123,7 +123,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="prescription_modal modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Add report</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Uplaod Prescription</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -142,7 +142,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="addreportBtn" type="button" class="btn btn-primary">Save changes</button>
+                <button id="addreportBtn" type="button" class="btn btn-primary">Upload</button>
             </div>
 
         </div>
@@ -214,31 +214,63 @@
     })
 
 
+
+
     $('#addreportBtn').click(function() {
 
-        var reportdoc = $('#docfile').prop('files')[0];
-        alert(reportdoc)
-        var formData = new FormData();
-        formData.append('doc', reportdoc);
+        var reportpdf = $('#docfile').prop('files')[0];
+        var app_id = $('#appid').val();
+        var p_id = $('#p_id').val();
 
-        axios.post("/reportdoc", formData).then(function(response) {
 
-            if (response.status == 200 && response.data == 1) {
+        if (reportpdf == "") {
+            toastr.error("File not selected");
+        } else {
 
-                toastr.success('Report Upload Success');
-            } else {
+            var formData = new FormData();
+            formData.append('pdf', reportpdf);
+            prescrition_data = [{
+                app_id: app_id,
+                p_id: p_id
+            }];
+            formData.append('pdf_info', JSON.stringify(prescrition_data));
 
-                toastr.error('Report Upload Fail!');
-            }
-        }).catch(function(error) {
 
-            toastr.error('Report Upload Fail!!!');
 
-        })
+
+
+            axios.post("/reportdoc", formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then(function(response) {
+
+                    if (response.status == 200 && response.data == 1) {
+
+                        toastr.success('Report Upload Success');
+                    } else if (response.data == 2) {
+                        toastr.error('Only pdf Format is Acceptable');
+                    } else {
+
+                        toastr.error('Report Upload Fail!');
+                    }
+                }).catch(function(error) {
+
+                    toastr.error('Report Upload Fail!!!');
+
+                })
+        }
+
     })
 
 
 
+
+
+
+
+    //generate pdf version of prescrition
 
     var max_fields = 10;
     var wrapper = $(".add-med");
@@ -317,8 +349,6 @@
 
         ];
 
-
-
         var formData = new FormData();
         formData.append('data', JSON.stringify(report_data));
 
@@ -329,26 +359,10 @@
             })
             .then(function(response) {
 
-
-                if (response.status = 200) {
-                    if (response.data == 1) {
-                        console.log(response.data);
-                        toastr.success('Prescrition Added');
-                    } else {
-
-                        toastr.error('Add New Failed');
-                        getCoursesdata();
-                    }
-                } else {
-
-                    toastr.error('Something Went Wrong');
-                }
-
+                toastr.success('Prescrition Downloaded');
 
             }).catch(function(error) {
-
-                toastr.error('Something Went Wrong');
-
+                toastr.success('Prescrition Downloaded');
             });
 
     })
