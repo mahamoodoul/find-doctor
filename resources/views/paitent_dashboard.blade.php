@@ -37,7 +37,7 @@
 @endif
 
 
-
+@if (count($totalpresinfo)>0)
 <section style="margin-top: 50px;" class="container">
     <h3>Your Completed Appointment List</h3>
     <table class="table">
@@ -51,26 +51,53 @@
                 <th scope="col">Report</th>
             </tr>
         </thead>
-        <tbody id="datatable">
-
+        <tbody id="">
+            {{$j=1}}
+            @foreach ($totalpresinfo as $presinfo)
 
             <tr>
-                <th scope="row">1</th>
-                <td>ccccccc</td>
-                <td>ddddddd</td>
-                <td>eeeeeee</td>
-                <td> <button data-id="" class="app_del btn btn-secondary">Yes</button></td>
-                <td> <button data-id="" class="app_del btn btn-secondary">Download</button></td>
+                <th scope="row">{{$j++}}</th>
+                <td>{{$presinfo['name']}}</td>
+                <td>{{$presinfo['date']}}</td>
+                <td>{{$presinfo['slot']}}</td>
+
+                <!-- <td> <a class=" btn btn-secondary" href="{{$presinfo['prescriton_link']}}">View</a></td> -->
+                <td> <button data-id="{{$presinfo['prescriton_link']}}" class="view_pdf btn btn-secondary">Show</button></td>
+
+                <td><a class=" btn btn-secondary" href="storage/{{$presinfo['prescriton_link']}}">Download</a></td>
             </tr>
 
+            @endforeach
         </tbody>
     </table>
 
 </section>
+@endif
 
+<!-- pdf view -->
 
+<div class="modal fade right" id="pdfViewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+    <div style="height: 100% !important; max-height: 100% !important;" class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+        <div style="height: 100% !important; max-height: 100% !important;" class="modal-content-full-width modal-content ">
+            <div class=" modal-header-full-width   modal-header text-center">
+                <h5 id="pdf_link"></h5>
+                <h5 class="modal-title w-100" id="exampleModalPreviewLabel">Your Prescription</h5>
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                    <span style="font-size: 1.3em;" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <embed id="pdf_src" src="" frameborder="0" type="application/pdf" height="100%" width="100%">
 
+            </div>
+            <div class="modal-footer-full-width  modal-footer">
+                <button type="button" class="btn btn-danger btn-md btn-rounded" data-dismiss="modal">Close</button>
 
+            </div>
+        </div>
+    </div>
+</div>
+<!-- pdf view end -->
 
 
 
@@ -230,6 +257,25 @@
             });
 
     })
+
+
+
+
+    $('.view_pdf').click(function() {
+       
+        var pdf_file = $(this).data("id");
+        var full_link = "storage/" + pdf_file;
+        console.log(full_link);
+        var pdf_src = document.getElementById("pdf_src");
+        pdf_src.src = full_link;
+        $('#pdf_link').html(app_id);
+        $('#pdfViewModal').modal('show');
+
+    })
+
+
+   
 </script>
 
 @endsection
+<h3 hidden id=""></h3>

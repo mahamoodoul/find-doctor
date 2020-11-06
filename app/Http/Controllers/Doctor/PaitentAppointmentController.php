@@ -104,19 +104,23 @@ class PaitentAppointmentController extends Controller
 
             // $fileName = $request->get('doc') . '.' . $request->file('doc')->extension();
             $namefile = $request->file('pdf')->storeAs('public/Report', $name);
-            $host = $_SERVER['HTTP_HOST'];
-            $location = "http://" . $host . "/storage/" . $namefile;
+            $pdfname = str_replace("public/", "", $namefile);
+
+
+            // $host = $_SERVER['HTTP_HOST'];
+            // $location = "http://" . $host . "/storage/" . $namefile;
             $countprescrition = (PrescriptionModel::where('appointment_id', '=', $appid)->count());
+            // return $countprescrition;
             if ($countprescrition == 0) {
                 $result = PrescriptionModel::insert([
                     'appointment_id' => $appid,
                     'doc_id' => $doctor_id,
                     'paitent_id' => $p_id,
-                    'prescriton_link' => $location,
+                    'prescriton_link' => $pdfname,
                     'status' => 0
                 ]);
             } else {
-                $result = PrescriptionModel::where('appointment_id', '=', $appid)->update(['prescriton_link' => $location]);
+                $result = PrescriptionModel::where('appointment_id', '=', $appid)->update(['prescriton_link' => $pdfname]);
             }
 
             if ($result == true) {

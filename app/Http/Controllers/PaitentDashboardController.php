@@ -78,6 +78,11 @@ class PaitentDashboardController extends Controller
         ]);
     }
 
+
+
+
+
+
     public function delAppointment(Request $request)
     {
         $appid = $request->input("appid");
