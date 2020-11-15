@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\AppointmentModel;
 use App\DoctorRegistar;
 use App\PrescriptionModel;
+use App\PdfModel;
+use App\PaitentRegisterModel;
+use PDF;
+use Illuminate\Support\Facades\DB;
+use function GuzzleHttp\json_decode;
 
 class PaitentDashboardController extends Controller
 {
@@ -14,6 +19,7 @@ class PaitentDashboardController extends Controller
 
         $p_id = $request->session()->get('paitent_id');
         $result = (AppointmentModel::where('paitent_id', '=', $p_id)->where('status', '=', 0)->get()->toArray());
+
         $j = 0;
         $info = array();
 
@@ -35,8 +41,13 @@ class PaitentDashboardController extends Controller
 
 
 
+
+
         $totalpresinfo = array();
-        $pres = (PrescriptionModel::select("doc_id", "prescriton_link", "appointment_id")->where('paitent_id', '=', $p_id)->where('status', '=', 0)->get()->toArray());
+        $pres = (PdfModel::select("doc_id", "app_id")
+            ->where('paitent_id', '=', $p_id)
+            ->where('status', '=', 1)->get()->toArray());
+        // return $pres;
 
         if ($pres) {
             $presinfo = array();
@@ -54,12 +65,12 @@ class PaitentDashboardController extends Controller
             }
 
             for ($c = 0; $c < count($presinfo); $c++) {
-                $appointment_ids[$c] = $pres[$c]['appointment_id'];
+                $appointment_ids[$c] = $pres[$c]['app_id'];
             }
 
             for ($r = 0; $r < count($appointment_ids); $r++) {
                 $pres_app_info[$r] = AppointmentModel::select("date", "slot")->where('id', '=', $appointment_ids[$r])->get()->toArray();
-                if ($appointment_ids[$r] == $presinfo[$r]['appointment_id']) {
+                if ($appointment_ids[$r] == $presinfo[$r]['app_id']) {
                     $totalpresinfo[$r] = $presinfo[$r] + $pres_app_info[$r][0];
                 }
             }
@@ -92,5 +103,76 @@ class PaitentDashboardController extends Controller
         } else {
             return 0;
         }
+    }
+
+    public function generatepdf(Request $request, $appid)
+    {
+
+
+        $pres_info = (PdfModel::where('app_id', '=', $appid)->get());
+        $doc_id = $pres_info[0]->doc_id;
+        $paitent_id = $pres_info[0]->paitent_id;
+        $med_name = unserialize($pres_info[0]->med_name);
+        $med_time = unserialize($pres_info[0]->med_time);
+        $procedure = unserialize($pres_info[0]->procedure);
+
+        $doctorInfo =  DB::table('doctor_register')
+            ->select('doctor_register.name', 'doctor_education.institution', 'doctor_education.subject', 'doctor_education.category', 'doctor_education.degree', 'doctor_experience.company_name', 'doctor_experience.location', 'doctor_experience.job_position')
+            ->join('doctor_education', 'doctor_education.doctor_id', '=', 'doctor_register.id')
+            ->join('doctor_experience', 'doctor_experience.doctor_id', '=', 'doctor_register.id')
+            ->where('doctor_register.id', '=', $doc_id)
+            ->where('doctor_education.doctor_id', '=', $doc_id)
+            ->where('doctor_experience.doctor_id', '=', $doc_id)
+            ->get();
+        $paitent_info = PaitentRegisterModel::select("name", "age", "phone", "blood_group")->where('paitent_id', '=', $paitent_id)->get();
+        $todaydate = date("Y-m-d h:i:sa");
+
+        $pres_info = [
+            'med_name' => $med_name,
+            'med_time' => $med_time,
+            'procedure' => $procedure,
+            'doc_info' => $doctorInfo,
+            'paitent_info' => $paitent_info,
+            'app_id' => $appid,
+            'date' => $todaydate
+        ];
+
+
+        $pdf = PDF::loadView('doctor.genarate_pdf', $pres_info);
+
+        return $pdf->stream($paitent_id . '.pdf');
+    }
+
+    public function ViewMedicine(Request $request, $appid)
+    {
+
+        $pres_info = (PdfModel::where('app_id', '=', $appid)->get());
+        $doc_id = $pres_info[0]->doc_id;
+        $paitent_id = $pres_info[0]->paitent_id;
+        $med_name = unserialize($pres_info[0]->med_name);
+        $med_time = unserialize($pres_info[0]->med_time);
+        $procedure = unserialize($pres_info[0]->procedure);
+
+        $doctorInfo =  DB::table('doctor_register')
+            ->select('doctor_register.name', 'doctor_education.institution', 'doctor_education.subject', 'doctor_education.category', 'doctor_education.degree', 'doctor_experience.company_name', 'doctor_experience.location', 'doctor_experience.job_position')
+            ->join('doctor_education', 'doctor_education.doctor_id', '=', 'doctor_register.id')
+            ->join('doctor_experience', 'doctor_experience.doctor_id', '=', 'doctor_register.id')
+            ->where('doctor_register.id', '=', $doc_id)
+            ->where('doctor_education.doctor_id', '=', $doc_id)
+            ->where('doctor_experience.doctor_id', '=', $doc_id)
+            ->get();
+        $paitent_info = PaitentRegisterModel::select("name", "age", "phone", "blood_group")->where('paitent_id', '=', $paitent_id)->get();
+        $todaydate = date("Y-m-d h:i:sa");
+
+        $pres_info = [
+            'med_name' => $med_name,
+            'med_time' => $med_time,
+            'procedure' => $procedure,
+            'doc_info' => $doctorInfo,
+            'paitent_info' => $paitent_info,
+            'app_id' => $appid,
+            'date' => $todaydate
+        ];
+        return $pres_info;
     }
 }

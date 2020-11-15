@@ -61,10 +61,9 @@
                 <td>{{$presinfo['date']}}</td>
                 <td>{{$presinfo['slot']}}</td>
 
-                <!-- <td> <a class=" btn btn-secondary" href="{{$presinfo['prescriton_link']}}">View</a></td> -->
-                <td> <button data-id="{{$presinfo['prescriton_link']}}" class="view_pdf btn btn-secondary">Show</button></td>
+                <td> <button data-id="{{$presinfo['app_id']}}" class="view_pdf btn btn-secondary">Show</button></td>
+                <td> <a class=" btn btn-secondary" href="{{route ('genarate.pdf', $presinfo['app_id'] ) }}">Generate</a></td>
 
-                <td><a class=" btn btn-secondary" href="storage/{{$presinfo['prescriton_link']}}">Download</a></td>
             </tr>
 
             @endforeach
@@ -74,8 +73,10 @@
 </section>
 @endif
 
-<!-- pdf view -->
 
+
+
+<!-- pdf view -->
 <div class="modal fade right" id="pdfViewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
     <div style="height: 100% !important; max-height: 100% !important;" class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
         <div style="height: 100% !important; max-height: 100% !important;" class="modal-content-full-width modal-content ">
@@ -86,12 +87,49 @@
                     <span style="font-size: 1.3em;" aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <embed id="pdf_src" src="" frameborder="0" type="application/pdf" height="100%" width="100%">
+            <div class="container modal-body">
+                <div class=" row">
+
+
+                    <div  class="col-md-6 mb-5 mt-5  ">
+
+                        <h3>Name: Dr.<span id="doc_name"></span></h3>
+                        <h3>Degree: <span id="degree"></span> in <span id="subject"></span> </h3>
+                        <h3>Psition : <span id="position"></span> In <span id="company_name"></span></h3>
+                        <h3><span id="institution"></span></h3>
+                    </div>
+
+                    <div class="col-md-6 mt-5">
+                        <h1>Find A Doctor LTD</h1>
+                        <h3 class="address">Address: Shukrabad,Dhanmondi</h3>
+                    </div>
+
+                </div>
+
+
+
+                <table id="customers" class="table">
+                    <thead class="black white-text">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Medicine Name</th>
+                            <th scope="col">Medicine Time</th>
+                            <th scope="col">Procedure</th>
+                        </tr>
+                    </thead>
+                    <tbody id="med_table">
+
+
+                    </tbody>
+                </table>
+
+                <div style="background-color: green;" class="footer text-center">
+                    <p style="font-weight: bold; color:black">Find A Doctor</p>
+                </div>
 
             </div>
             <div class="modal-footer-full-width  modal-footer">
-                <button type="button" class="btn btn-danger btn-md btn-rounded" data-dismiss="modal">Close</button>
+                <button id="closemodal" type="button" class="btn btn-danger btn-md btn-rounded" data-dismiss="modal">Close</button>
 
             </div>
         </div>
@@ -225,7 +263,7 @@
         var appid = $('#app_id').html();
 
 
-        // $('#datatable').empty();
+
         axios.post('/appointmentDel', {
                 appid: appid
             })
@@ -262,19 +300,47 @@
 
 
     $('.view_pdf').click(function() {
-       
-        var pdf_file = $(this).data("id");
-        var full_link = "storage/" + pdf_file;
-        console.log(full_link);
-        var pdf_src = document.getElementById("pdf_src");
-        pdf_src.src = full_link;
-        $('#pdf_link').html(app_id);
+
+
+        var appointment_id = $(this).data("id");
+        console.log(appointment_id);
+        axios.get(`/viewMedicine/${appointment_id}`)
+            .then(function(response) {
+
+                var data = response.data;
+                var med_name = (data['med_name']);
+                var med_time = (data['med_time']);
+                var procedure = (data['procedure']);
+                var doc_info = data['doc_info'][0];
+
+
+
+                $('#doc_name').html(doc_info.name);
+                $('#degree').html(doc_info.degree);
+                $('#subject').html(doc_info.subject);
+                $('#position').html(doc_info.job_position);
+                $('#institution').html(doc_info.institution);
+                $('#company_name').html(doc_info.company_name);
+                var j = 1;
+                $('#med_table').empty();
+                $.each(med_name, function(i) {
+                    $('<tr>').html(
+
+                        "<td>" + j++ + " </td>" +
+                        "<td>" + med_name[i] + " </td>" +
+                        "<td>" + med_time[i] + " </td>" +
+                        "<td>" + procedure[i] + " </td>"
+
+                    ).appendTo('#med_table');
+                });
+
+            })
+            .catch(function(error) {
+                console.log(error);
+            })
+
         $('#pdfViewModal').modal('show');
-
     })
-
-
-   
 </script>
 
 @endsection

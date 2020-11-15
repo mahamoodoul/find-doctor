@@ -135,8 +135,14 @@ $("#loginbtnclick").click(function () {
     }
 });
 
+
+
 //video link show in header
+
+
 setInterval(showlink,1000);
+
+
 // showlink();
 function showlink() {
     axios
@@ -147,6 +153,8 @@ function showlink() {
             var appointment_id = dataJSON.app_id;
             var date = dataJSON.date;
             var time = dataJSON.slot;
+            // console.log(time);
+
             var space = " ";
             var position = 5;
             var timeformat = [time.slice(0, position),space,time.slice(position),].join("");
@@ -174,7 +182,7 @@ function showlink() {
             }
             var getmin=(time.charAt(3)+""+time.charAt(4));
             var newTime=String(valuetf+":"+getmin+":00");
-            console.log(newTime);
+            // console.log(newTime);
 
 
 
@@ -196,6 +204,11 @@ function showlink() {
            
 
             var stamp_date=Math.abs((new Date(adddateTime).getTime()/1000).toFixed(0));
+
+
+            // console.log(stamp_date);
+
+
             var stamp_current=Math.abs((new Date().getTime()/1000).toFixed(0));
             diffs=stamp_date-stamp_current;
             var daystamp=Math.floor(diffs/86400);
@@ -217,6 +230,10 @@ function showlink() {
             $("#videolinkDiv").addClass("d-none");
         });
 }
+
+
+
+
 
 function diff_hours(dt1, dt2) {
     var diff = (dt2.getTime() - dt1.getTime()) / 1000;

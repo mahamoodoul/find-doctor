@@ -43,11 +43,13 @@
 
                 <div class="m-t-20 text-center">
                     <button id="addreport" data-toggle="modal" data-target="#prescription" class="btn btn-primary submit-btn">Make Prescription</button>
-
                 </div>
                 <div class="m-t-20 text-center">
-                    <button id="addreport" data-toggle="modal" data-target="#addreportmodal" class="btn btn-primary submit-btn">Meeting Done?</button>
+                    <button id="sendpres" data-toggle="modal" data-target="#" class="btn btn-primary submit-btn">Send Prescription to Paitent</button>
                 </div>
+                <!-- <div class="m-t-20 text-center">
+                    <button id="addreport" data-toggle="modal" data-target="#addreportmodal" class="btn btn-primary submit-btn">Meeting Done?</button>
+                </div> -->
 
             </div>
         </div>
@@ -359,11 +361,33 @@
             })
             .then(function(response) {
 
-                toastr.success('Prescrition Downloaded');
+                toastr.success('Prescrition inserted');
 
             }).catch(function(error) {
-                toastr.success('Prescrition Downloaded');
+                toastr.success('Prescrition failed');
             });
+
+    })
+
+    $('#sendpres').click(function() {
+
+        var app_id = $('#appid').val();
+
+        axios.post(`/sendprestopaitent/${app_id}`)
+            .then(function(response) {
+
+                if (response.status == 200 && response.data == 1) {
+
+                    toastr.success('Prescription send to the Paitent');
+                } else {
+
+                    toastr.error('Prescription Upload Fail!');
+                }
+            }).catch(function(error) {
+
+                toastr.error('Prescription Upload Fail!!!');
+
+            })
 
     })
 </script>

@@ -13,8 +13,11 @@ use App\DoctorEducationModel;
 use App\DoctorExperienceModel;
 use App\PaitentRegisterModel;
 use App\PrescriptionModel;
+use App\PdfModel;
 use Illuminate\Support\Facades\DB;
 use PaitentRegister;
+
+use function GuzzleHttp\json_decode;
 
 class PaitentAppointmentController extends Controller
 {
@@ -25,7 +28,7 @@ class PaitentAppointmentController extends Controller
         // $date= str_replace("-","/",$today);
 
         $doctor_id = $request->session()->get('doctorId');
-        $result = (AppointmentModel::where('doc_id', '=', $doctor_id)->where('date', '>', $today)->get());
+        $result = (AppointmentModel::where('doc_id', '=', $doctor_id)->where('date', '>=', $today)->get());
         return $result;
     }
 
@@ -91,6 +94,7 @@ class PaitentAppointmentController extends Controller
         $data = json_decode($_POST['pdf_info']);
 
         $appid = $data[0]->app_id;
+
         $p_id = $data[0]->p_id;
         $doctor_id = $request->session()->get('doctorId');
 
@@ -110,6 +114,9 @@ class PaitentAppointmentController extends Controller
             // $host = $_SERVER['HTTP_HOST'];
             // $location = "http://" . $host . "/storage/" . $namefile;
             $countprescrition = (PrescriptionModel::where('appointment_id', '=', $appid)->count());
+
+
+            AppointmentModel::where('id', '=', $appid)->update(['status' => 1]);
             // return $countprescrition;
             if ($countprescrition == 0) {
                 $result = PrescriptionModel::insert([
@@ -144,47 +151,60 @@ class PaitentAppointmentController extends Controller
     {
 
         $data = json_decode($_POST['data']);
+
+
+
         $appid = $data[0]->app_id;
         $app_info = (AppointmentModel::select("doc_id")->where('id', '=', $appid)->get());
         $doc_id = $app_info[0]->doc_id;
-
-
-        $doctorInfo =  DB::table('doctor_register')
-            ->select('doctor_register.name', 'doctor_education.institution', 'doctor_education.subject', 'doctor_education.category', 'doctor_education.degree', 'doctor_experience.company_name', 'doctor_experience.location', 'doctor_experience.job_position')
-            ->join('doctor_education', 'doctor_education.doctor_id', '=', 'doctor_register.id')
-            ->join('doctor_experience', 'doctor_experience.doctor_id', '=', 'doctor_register.id')
-            ->where('doctor_register.id', '=', $doc_id)
-            ->where('doctor_education.doctor_id', '=', $doc_id)
-            ->where('doctor_experience.doctor_id', '=', $doc_id)
-            ->get();
-
-        // return $doctorInfo;
-
         $p_id = $data[0]->p_id;
-        $paitent_info = PaitentRegisterModel::select("name", "age", "phone", "blood_group")->where('paitent_id', '=', $p_id)->get();
 
 
-        $todaydate = date("Y-m-d h:i:sa");
 
 
         $medicine = $data[0]->prescription;
+        // return $medicine;
         $med_name = $medicine[0];
+
         $med_time = $medicine[1];
         $procedure = $medicine[2];
 
+        $count = (PdfModel::where('app_id', '=', $appid)->count());
 
-        $pres_info = [
-            'med_name' => $med_name,
-            'med_time' => $med_time,
-            'procedure' => $procedure,
-            'doc_info' => $doctorInfo,
-            'paitent_info' => $paitent_info,
-            'app_id' => $appid,
-            'date' => $todaydate
-        ];
+        if ($count == 0) {
+            $insert = (PdfModel::insert([
+                'app_id' => $appid,
+                'doc_id' => $doc_id,
+                'paitent_id' => $p_id,
+                'med_name' => serialize($med_name),
+                'med_time' => serialize($med_time),
+                'procedure' => serialize($procedure),
+                'status' => 0
+            ]));
+        } else {
+            $insert = PdfModel::where('app_id', '=', $appid)->update(['med_name' => serialize($med_name), 'med_time' => serialize($med_time), 'procedure' => serialize($procedure)]);
+        }
 
-        $pdf = PDF::loadView('doctor.genarate_pdf', $pres_info);
 
-        return $pdf->download($p_id . '.pdf');
+
+        if ($insert == true) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+
+
+    public function sendPrescription(Request $request, $appid)
+    {
+
+        $statuschange = PdfModel::where('app_id', '=', $appid)->update(['status' => 1]);
+        $Appostatuschange = AppointmentModel::where('id', '=', $appid)->update(['status' => 1]);
+        if ($statuschange == true && $Appostatuschange == true) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }
