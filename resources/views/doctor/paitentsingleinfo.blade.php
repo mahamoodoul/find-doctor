@@ -38,14 +38,14 @@
                 </div>
 
                 <div class="m-t-20 text-center">
-                    <button id="sendtopaitent" class="btn btn-primary submit-btn">Send To Paitent</button>
+                    <button id="sendtopaitent" class="btn btn-primary submit-btn">Send Video link to Paitent</button>
                 </div>
 
                 <div class="m-t-20 text-center">
                     <button id="addreport" data-toggle="modal" data-target="#prescription" class="btn btn-primary submit-btn">Make Prescription</button>
                 </div>
                 <div class="m-t-20 text-center">
-                    <button id="sendpres" data-toggle="modal" data-target="#" class="btn btn-primary submit-btn">Send Prescription to Paitent</button>
+                    <button id="sendpres" data-toggle="modal" data-target="#" class="btn btn-secondary submit-btn">Send Prescription to Paitent</button>
                 </div>
                 <!-- <div class="m-t-20 text-center">
                     <button id="addreport" data-toggle="modal" data-target="#addreportmodal" class="btn btn-primary submit-btn">Meeting Done?</button>

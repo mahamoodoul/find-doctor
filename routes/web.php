@@ -48,6 +48,7 @@ Route::get('/admin/login', function () {
 
 
 
+
 //doctor portion
 //doctor register,login and profile info update and logout.
 Route::post('/doctor_register', 'Doctor\\DoctorRegistration@DoctorRegister');
@@ -120,4 +121,10 @@ Route::get('/generate/{appo_id}','PaitentDashboardController@generatepdf')->name
 Route::get('/viewMedicine/{appo_id}','PaitentDashboardController@ViewMedicine');
 
 
+
+
+
+// all doctors
+Route::get('/allDoctors', 'AlldoctorController@AlldoctorHome');
+Route::get('/getdocbycat/{cat}', 'AlldoctorController@getDoctorbyCat');
 

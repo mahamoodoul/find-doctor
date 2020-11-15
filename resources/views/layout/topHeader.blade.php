@@ -80,7 +80,7 @@
                 <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="{{url('about')}}" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-                <li class="nav-item"><a href="doctors.html" class="nav-link">Doctors</a></li>
+                <li class="nav-item"><a href="{{url('allDoctors')}}" class="nav-link">Doctors</a></li>
                 <li class="nav-item"><a href="department.html" class="nav-link">Departments</a></li>
                 @if(Session::get('id'))
                 <li class="nav-item"><a href="{{url('paitent_dashboard')}}" class="nav-link">Dashboard</a></li>
