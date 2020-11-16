@@ -127,4 +127,6 @@ Route::get('/viewMedicine/{appo_id}','PaitentDashboardController@ViewMedicine');
 // all doctors
 Route::get('/allDoctors', 'AlldoctorController@AlldoctorHome');
 Route::get('/getdocbycat/{cat}', 'AlldoctorController@getDoctorbyCat');
+Route::get('/getalldoctors', 'AlldoctorController@getAlldoctors');
+
 
