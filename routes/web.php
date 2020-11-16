@@ -130,3 +130,10 @@ Route::get('/getdocbycat/{cat}', 'AlldoctorController@getDoctorbyCat');
 Route::get('/getalldoctors', 'AlldoctorController@getAlldoctors');
 
 
+//doctor rating
+Route::get('/ratingDoctor/{doc_id}/{app_id}','RatingController@RatingsingleDoctor')->name('ratting.doctor');
+
+Route::post('/ratingdoc', 'RatingController@DoctorRating');
+
+Route::get('/getratting', 'RatingController@getRating');
+

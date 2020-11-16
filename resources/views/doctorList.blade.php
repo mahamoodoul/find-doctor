@@ -24,13 +24,26 @@
 
                             <h3 class="mb-2">{{$doctorinfo[0]->company_name}}</h3>
                             <h3 class="mb-2">{{$doctorinfo[0]->job_position}}</h3>
+                            <input id="avg" type="hidden" value="{{$doctorinfo[0]->avg}}">
 
-                            <ul class="ftco-social text-center">
-                                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a></li>
-                                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a></li>
-                                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-google"></span></a></li>
-                                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"></span></a></li>
-                            </ul>
+
+
+                            <div align="center" style="background: white; color:rgba(0,0,0,.18); padding-top: 3px; height: 39px; margin-bottom: 13px; border-radius: 3px;">
+                                <?php
+                                for ($i = 0; $i < $doctorinfo[0]->avg; $i++) {
+                                ?>
+                                    <i style="color: green;" class="fa fa-star fa-2x" data-index="0"></i>
+
+                                <?php   }
+                                $total_left = 5 - $doctorinfo[0]->avg;
+                                for ($j = 0; $j < $total_left; $j++) {
+                                ?>
+                                    <i class="fa fa-star fa-2x" data-index="0"></i>
+                                <?php    }
+                                ?>
+                                <br><br>
+                            </div>
+
                             <input class="doctor_id" type="hidden" value="{{$doctorinfo[0]->doctor_id}}">
                             <a class="appointment takeAppointment" href="{{route('appointment.doctor', $doctorinfo[0]->doctor_id)}}">Take Appointment</a>
                             <!-- <button type="submit" id="" ></button> -->

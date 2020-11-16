@@ -135,13 +135,9 @@ $("#loginbtnclick").click(function () {
     }
 });
 
-
-
 //video link show in header
 
-
 // setInterval(showlink,1000);
-
 
 // showlink();
 function showlink() {
@@ -157,83 +153,79 @@ function showlink() {
 
             var space = " ";
             var position = 5;
-            var timeformat = [time.slice(0, position),space,time.slice(position),].join("");
+            var timeformat = [
+                time.slice(0, position),
+                space,
+                time.slice(position),
+            ].join("");
             $("#date").html(date);
             $("#time").html(timeformat);
-          
 
-
-            if(time.includes('pm')){
-                var getfisrttwo=(time.charAt(0)+""+time.charAt(1));
-                var valuetf=parseInt(getfisrttwo);
-                if (valuetf == 12){
-                    valuetf=12;
-                }else{
-                    valuetf=valuetf+12;
+            if (time.includes("pm")) {
+                var getfisrttwo = time.charAt(0) + "" + time.charAt(1);
+                var valuetf = parseInt(getfisrttwo);
+                if (valuetf == 12) {
+                    valuetf = 12;
+                } else {
+                    valuetf = valuetf + 12;
                 }
             }
 
-            if(time.includes('am')){
-                var getfisrttwo=(time.charAt(0)+""+time.charAt(1));
-                var valuetf=parseInt(getfisrttwo);
-                if(valuetf== 12){
-                    valuetf="00";
+            if (time.includes("am")) {
+                var getfisrttwo = time.charAt(0) + "" + time.charAt(1);
+                var valuetf = parseInt(getfisrttwo);
+                if (valuetf == 12) {
+                    valuetf = "00";
                 }
             }
-            var getmin=(time.charAt(3)+""+time.charAt(4));
-            var newTime=String(valuetf+":"+getmin+":00");
+            var getmin = time.charAt(3) + "" + time.charAt(4);
+            var newTime = String(valuetf + ":" + getmin + ":00");
             // console.log(newTime);
-
-
-
-
-
 
             var today_date = TodaysDate();
             dt2 = new Date(date);
-            dt1 = new Date(today_date);  
+            dt1 = new Date(today_date);
             var diff = diff_hours(dt1, dt2);
-            var day =Math.round(diff / 24) ;
-
-
+            var day = Math.round(diff / 24);
 
             var myFutureDate = getfutureDate(day);
-            var adddateTime=myFutureDate+" "+newTime;
+            var adddateTime = myFutureDate + " " + newTime;
 
             console.log(adddateTime);
-           
 
-            var stamp_date=Math.abs((new Date(adddateTime).getTime()/1000).toFixed(0));
-
+            var stamp_date = Math.abs(
+                (new Date(adddateTime).getTime() / 1000).toFixed(0)
+            );
 
             // console.log(stamp_date);
 
-
-            var stamp_current=Math.abs((new Date().getTime()/1000).toFixed(0));
-            diffs=stamp_date-stamp_current;
-            var daystamp=Math.floor(diffs/86400);
-            var hourstamp=Math.floor(diffs/3600)%24;
-            var minstamp=Math.floor(diffs/60)%60;
-            var secstamp=diffs % 60;
-            var timeStamps=daystamp+" Days:"+hourstamp+":"+minstamp+":"+secstamp;
+            var stamp_current = Math.abs(
+                (new Date().getTime() / 1000).toFixed(0)
+            );
+            diffs = stamp_date - stamp_current;
+            var daystamp = Math.floor(diffs / 86400);
+            var hourstamp = Math.floor(diffs / 3600) % 24;
+            var minstamp = Math.floor(diffs / 60) % 60;
+            var secstamp = diffs % 60;
+            var timeStamps =
+                daystamp +
+                " Days:" +
+                hourstamp +
+                ":" +
+                minstamp +
+                ":" +
+                secstamp;
             $("#countdown").html(timeStamps);
-            if(hourstamp <='00' && minstamp <='00' && secstamp <='00'){
-                $("#meetlink").attr("href", dataJSON.link);    
-                $('#meetlink').removeClass('disabled');
-                    $("#countdown").html("");
+            if (hourstamp <= "00" && minstamp <= "00" && secstamp <= "00") {
+                $("#meetlink").attr("href", dataJSON.link);
+                $("#meetlink").removeClass("disabled");
+                $("#countdown").html("");
             }
-           
-
-
         })
         .catch(function (error) {
             $("#videolinkDiv").addClass("d-none");
         });
 }
-
-
-
-
 
 function diff_hours(dt1, dt2) {
     var diff = (dt2.getTime() - dt1.getTime()) / 1000;
@@ -278,4 +270,17 @@ function getfutureDate(day) {
 function setCharAt(str, index, chr) {
     if (index > str.length - 1) return str;
     return str.substring(0, index) + chr + str.substring(index + 1);
+}
+
+//rating system
+
+
+
+function setStars(max) {
+    for (var i = 0; i <= max; i++)
+        $(".fa-star:eq(" + i + ")").css("color", "green");
+}
+
+function resetStarColors() {
+    $(".fa-star").css("color", "white");
 }

@@ -49,10 +49,12 @@
                 <th scope="col">Time</th>
                 <th scope="col">View Report</th>
                 <th scope="col">Report</th>
+                <th scope="col">Rating</th>
             </tr>
         </thead>
         <tbody id="">
             {{$j=1}}
+            
             @foreach ($totalpresinfo as $presinfo)
 
             <tr>
@@ -63,6 +65,8 @@
 
                 <td> <button style="margin-top: 2px;" data-id="{{$presinfo['app_id']}}" class="view_pdf btn btn-secondary">Show</button></td>
                 <td> <a class=" btn btn-secondary" href="{{route ('genarate.pdf', $presinfo['app_id'] ) }}">Generate</a></td>
+                <td> <a class=" btn btn-secondary" href="{{route ('ratting.doctor', [$presinfo['doc_id'],$presinfo['app_id']] ) }}">Rate the Doctor</a></td>
+                
 
             </tr>
 
@@ -91,7 +95,7 @@
                 <div class=" row">
 
 
-                    <div  class="col-md-6 mb-5 mt-5  ">
+                    <div class="col-md-6 mb-5 mt-5  ">
 
                         <h3>Name: Dr.<span id="doc_name"></span></h3>
                         <h3>Degree: <span id="degree"></span> in <span id="subject"></span> </h3>
@@ -272,6 +276,11 @@
 
         $('#pdfViewModal').modal('show');
     })
+
+
+
+
+   
 </script>
 
 @endsection
