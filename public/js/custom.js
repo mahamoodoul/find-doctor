@@ -272,15 +272,4 @@ function setCharAt(str, index, chr) {
     return str.substring(0, index) + chr + str.substring(index + 1);
 }
 
-//rating system
 
-
-
-function setStars(max) {
-    for (var i = 0; i <= max; i++)
-        $(".fa-star:eq(" + i + ")").css("color", "green");
-}
-
-function resetStarColors() {
-    $(".fa-star").css("color", "white");
-}
