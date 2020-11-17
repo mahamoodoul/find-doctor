@@ -15,9 +15,9 @@
 <body>
 
 
-    @include('doctor.layout.header')
+    @include('admin.layout.header')
 
-    @include('doctor.layout.sidebar')
+    @include('admin.layout.sidebar')
 
     @yield('content')
 

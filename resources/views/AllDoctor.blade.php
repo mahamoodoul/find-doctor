@@ -53,7 +53,7 @@
                 .then(function(response) {
 
                     if (response.status == 200 && (response.data).length > 0) {
-                        console.log((response.data).length);
+                        console.log((response.data));
                         var categorydocinfo = response.data;
                         showeachdocttor(categorydocinfo);
                         $("#docinfo").show();

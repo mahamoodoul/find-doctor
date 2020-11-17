@@ -54,6 +54,7 @@ class DoctorRegistration extends Controller
 
     public function DoctorLogin(Request $request)
     {
+        
         $data = json_decode($_POST['loginData']);
         $email = $data[0]->email;
         $password = $data[0]->password;

@@ -37,13 +37,6 @@ Route::get('/doctor', function () {
 
 
 
-Route::get('/admin', function () {
-    return view('/admin/dashboard');
-});
-
-Route::get('/admin/login', function () {
-    return view('/admin/login');
-});
 
 
 
@@ -76,10 +69,10 @@ Route::post('/vidoeLink', 'Doctor\\PaitentAppointmentController@SendVideoLink');
 //doc report upload
 Route::post('/reportdoc', 'Doctor\\PaitentAppointmentController@getdocreport');
 
-Route::post('generate-pdf','Doctor\\PaitentAppointmentController@generatePDF');
+Route::post('generate-pdf', 'Doctor\\PaitentAppointmentController@generatePDF');
 
 //doc send the prescription to paitent
-Route::post('/sendprestopaitent/{appo_id}','Doctor\\PaitentAppointmentController@sendPrescription');
+Route::post('/sendprestopaitent/{appo_id}', 'Doctor\\PaitentAppointmentController@sendPrescription');
 
 
 
@@ -116,9 +109,9 @@ Route::post('/appointmentDel', 'PaitentDashboardController@delAppointment');
 
 //paitent generate pdf
 
-Route::get('/generate/{appo_id}','PaitentDashboardController@generatepdf')->name('genarate.pdf');
+Route::get('/generate/{appo_id}', 'PaitentDashboardController@generatepdf')->name('genarate.pdf');
 
-Route::get('/viewMedicine/{appo_id}','PaitentDashboardController@ViewMedicine');
+Route::get('/viewMedicine/{appo_id}', 'PaitentDashboardController@ViewMedicine');
 
 
 
@@ -131,9 +124,34 @@ Route::get('/getalldoctors', 'AlldoctorController@getAlldoctors');
 
 
 //doctor rating
-Route::get('/ratingDoctor/{doc_id}/{app_id}','RatingController@RatingsingleDoctor')->name('ratting.doctor');
+Route::get('/ratingDoctor/{doc_id}/{app_id}', 'RatingController@RatingsingleDoctor')->name('ratting.doctor');
 
 Route::post('/ratingdoc', 'RatingController@DoctorRating');
 
 Route::get('/getratting', 'RatingController@getRating');
 
+
+
+
+
+
+
+//admin portion
+
+
+Route::get('/admin', 'Admin\\AdminController@AdminDashboard')->middleware('adminlogincheck');
+Route::get('/admin/login', 'Admin\\AdminController@AdminLoginPage');
+Route::post('login_verfiy', 'Admin\\AdminController@AdminLoginCheck')->name('admin.login');
+Route::get('/logout', 'Admin\\AdminController@AdminLogout');
+
+
+
+
+
+// Route::get('/admin', function () {
+//     return view('/admin/dashboard');
+// });
+
+// Route::get('/admin/login', function () {
+//     return view('/admin/login');
+// });
