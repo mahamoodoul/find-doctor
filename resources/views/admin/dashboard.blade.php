@@ -48,7 +48,7 @@
         </div>
 
         <div class="row">
-            <div class="col-12 col-md-6 col-lg-12 col-xl-12">
+            <div class="col-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title d-inline-block">Pending Doctors</h4> <a href="appointments.html" class="btn btn-primary float-right">View all</a>
@@ -56,102 +56,59 @@
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table mb-0">
-                                <thead class="d-none">
+                                <thead class="">
                                     <tr>
-                                        <th>Patient Name</th>
-                                        <th>Doctor Name</th>
-                                        <th>Timing</th>
+                                        <th>Dr. Name</th>
+                                        <th>Email</th>
+                                        <th>Company Name</th>
+                                        <th>Position</th>
+                                        <th>Institution</th>
+                                        <th>Subject</th>
                                         <th class="text-right">Status</th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
-                                    <tr>
-                                        <td style="min-width: 200px;">
-                                            <a class="avatar" href="profile.html">B</a>
-                                            <h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Appointment With</h5>
-                                            <p>Dr. Cristina Groves</p>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Timing</h5>
-                                            <p>7.00 PM</p>
-                                        </td>
-                                        <td class="text-right">
-                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="min-width: 200px;">
-                                            <a class="avatar" href="profile.html">B</a>
-                                            <h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Appointment With</h5>
-                                            <p>Dr. Cristina Groves</p>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Timing</h5>
-                                            <p>7.00 PM</p>
-                                        </td>
-                                        <td class="text-right">
-                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="min-width: 200px;">
-                                            <a class="avatar" href="profile.html">B</a>
-                                            <h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Appointment With</h5>
-                                            <p>Dr. Cristina Groves</p>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Timing</h5>
-                                            <p>7.00 PM</p>
-                                        </td>
-                                        <td class="text-right">
-                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="min-width: 200px;">
-                                            <a class="avatar" href="profile.html">B</a>
-                                            <h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Appointment With</h5>
-                                            <p>Dr. Cristina Groves</p>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Timing</h5>
-                                            <p>7.00 PM</p>
-                                        </td>
-                                        <td class="text-right">
-                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="min-width: 200px;">
-                                            <a class="avatar" href="profile.html">B</a>
-                                            <h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Appointment With</h5>
-                                            <p>Dr. Cristina Groves</p>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Timing</h5>
-                                            <p>7.00 PM</p>
-                                        </td>
-                                        <td class="text-right">
-                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
-                                        </td>
-                                    </tr>
+                                    <?php if (count($docinfo) > 0) {
+                                        $j = 0;
+                                        for ($i = 0; $i < count($docinfo); $i++) {
+                                    ?>
+
+                                            <tr>
+                                                <td style="min-width: 200px;">
+                                                    <a class="avatar" href="profile.html">B</a>
+                                                    <h2><a href="profile.html">{{$docinfo[$i][$j]->name}} <span>{{$docinfo[$i][$j]->address}}</span></a></h2>
+                                                </td>
+                                                <td>
+                                                    <h5 class="time-title p-0">{{$docinfo[$i][$j]->email}}</h5>
+                                                </td>
+                                                <td>
+                                                    <h5 class="time-title p-0">{{$docinfo[$i][$j]->company_name}}</h5>
+                                                </td>
+                                                <td>
+                                                    <h5 class="time-title p-0">{{$docinfo[$i][$j]->job_position}}</h5>
+                                                </td>
+                                                <td>
+                                                    <h5 class="time-title p-0">{{$docinfo[$i][$j]->institution}}</h5>
+                                                </td>
+                                                <td>
+                                                    <h5 class="time-title p-0">{{$docinfo[$i][$j]->subject}}</h5>
+                                                </td>
+
+                                                <td class="text-right">
+                                                    <a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
+                                                </td>
+                                            </tr>
+                                        <?php }  ?>
+                                        <?php } else { ?>
+                                            <div style="color: red;" class="mt-5 ml-5 text-center">
+                                                <h3>Now there are no Doctor for approval.</h3>
+                                            </div>
+                                        <?php } ?>
+
                                 </tbody>
                             </table>
+                        
                         </div>
                     </div>
                 </div>
