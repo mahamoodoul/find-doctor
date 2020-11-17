@@ -53,6 +53,15 @@
                     <div class="card-header">
                         <h4 class="card-title d-inline-block">Pending Doctors</h4> <a href="appointments.html" class="btn btn-primary float-right">View all</a>
                     </div>
+                    @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table mb-0">
@@ -96,19 +105,19 @@
                                                 </td>
 
                                                 <td class="text-right">
-                                                    <a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
+                                                    <a href="{{route('doctor.approve', $docinfo[$i][$j]->doctor_id)}}" class="btn btn-outline-primary take-btn">Approve</a>
                                                 </td>
                                             </tr>
                                         <?php }  ?>
-                                        <?php } else { ?>
-                                            <div style="color: red;" class="mt-5 ml-5 text-center">
-                                                <h3>Now there are no Doctor for approval.</h3>
-                                            </div>
-                                        <?php } ?>
+                                    <?php } else { ?>
+                                        <div style="color: red;" class="mt-5 ml-5 text-center">
+                                            <h3>Now there are no Doctor for approval.</h3>
+                                        </div>
+                                    <?php } ?>
 
                                 </tbody>
                             </table>
-                        
+
                         </div>
                     </div>
                 </div>

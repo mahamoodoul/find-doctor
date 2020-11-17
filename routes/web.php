@@ -143,15 +143,7 @@ Route::get('/admin', 'Admin\\AdminController@AdminDashboard')->middleware('admin
 Route::get('/admin/login', 'Admin\\AdminController@AdminLoginPage');
 Route::post('login_verfiy', 'Admin\\AdminController@AdminLoginCheck')->name('admin.login');
 Route::get('/logout', 'Admin\\AdminController@AdminLogout');
+Route::get('doctorApprove/{doc_id}', 'Admin\\AdminController@DoctorApprove')->name('doctor.approve');
 
 
 
-
-
-// Route::get('/admin', function () {
-//     return view('/admin/dashboard');
-// });
-
-// Route::get('/admin/login', function () {
-//     return view('/admin/login');
-// });
