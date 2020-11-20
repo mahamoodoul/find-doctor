@@ -51,7 +51,7 @@
             <div class="col-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title d-inline-block">Pending Doctors</h4> <a href="appointments.html" class="btn btn-primary float-right">View all</a>
+                        <h4 style="color: green; font-size:20px; font-weight:bold; " class="card-title d-inline-block">Pending Doctors Request</h4> <a href="appointments.html" class="btn btn-primary float-right">View all</a>
                     </div>
                     @if (count($errors) > 0)
                     <div class="alert alert-danger">
@@ -125,53 +125,45 @@
 
         </div>
         <div class="row">
-            <div class="col-12 col-md-6 col-lg-8 col-xl-8">
+            <div class="col-sm-12 col-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title d-inline-block">New Patients </h4> <a href="patients.html" class="btn btn-primary float-right">View all</a>
+                        <h4 style="color: green; font-size:20px; font-weight:bold;" class="card-title d-inline-block">Upcoming Appointments </h4> <a href="patients.html" class="btn btn-primary float-right">View all</a>
                     </div>
                     <div class="card-block">
                         <div class="table-responsive">
-                            <table class="table mb-0 new-patient-table">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <img width="28" height="28" class="rounded-circle" src="assets/img/user.jpg" alt="">
-                                            <h2>John Doe</h2>
-                                        </td>
-                                        <td>Johndoe21@gmail.com</td>
-                                        <td>+1-202-555-0125</td>
-                                        <td><button class="btn btn-primary btn-primary-one float-right">Fever</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <img width="28" height="28" class="rounded-circle" src="assets/img/user.jpg" alt="">
-                                            <h2>Richard</h2>
-                                        </td>
-                                        <td>Richard123@yahoo.com</td>
-                                        <td>202-555-0127</td>
-                                        <td><button class="btn btn-primary btn-primary-two float-right">Cancer</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <img width="28" height="28" class="rounded-circle" src="assets/img/user.jpg" alt="">
-                                            <h2>Villiam</h2>
-                                        </td>
-                                        <td>Richard123@yahoo.com</td>
-                                        <td>+1-202-555-0106</td>
-                                        <td><button class="btn btn-primary btn-primary-three float-right">Eye</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <img width="28" height="28" class="rounded-circle" src="assets/img/user.jpg" alt="">
-                                            <h2>Martin</h2>
-                                        </td>
-                                        <td>Richard123@yahoo.com</td>
-                                        <td>776-2323 89562015</td>
-                                        <td><button class="btn btn-primary btn-primary-four float-right">Fever</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <?php if (count($upcommingapp) > 0) { ?>
+                                <table class="table mb-0 new-patient-table">
+                                    <thead class="">
+                                        <tr>
+                                            <th>Paitent Name</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
+                                            <th>Doctor</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach ($upcommingapp as $appoint)
+                                        <tr>
+                                            <td>
+                                                <img width="28" height="28" class="rounded-circle" src="assets/img/user.jpg" alt="">
+                                                <h2>{{$appoint->paitent_name}}</h2>
+                                            </td>
+                                            <td>{{$appoint->date}}</td>
+                                            <td>{{$appoint->slot}}</td>
+                                            <td><button class="btn btn-primary btn-primary-one ">{{$appoint->name}}</button></td>
+                                        </tr>
+                                        @endforeach
+
+                                    </tbody>
+                                </table>
+                            <?php } else { ?>
+                                <div style="color: red;" class="mt-5 ml-5 text-center">
+                                    <h3>Now there are no Upcomming Appointment</h3>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

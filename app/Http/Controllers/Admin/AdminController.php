@@ -9,6 +9,7 @@ use App\AdminModel;
 use App\DoctorRegistar;
 use App\DoctorEducationModel;
 use App\DoctorExperienceModel;
+use App\AppointmentModel;
 
 use Illuminate\Support\Facades\DB;
 
@@ -42,8 +43,25 @@ class AdminController extends Controller
                     ->toArray());
             }
         }
+        // $appointment=AppointmentModel::where('status','=',0)->orderByDesc('id')->get()->toArray();
+        $today = date('m-d-Y');
+        $appointment = DB::table('appointment')
+            ->select('appointment.paitent_name', 'appointment.slot', 'appointment.date', 'doctor_register.name')
+            ->leftJoin('doctor_register', 'doctor_register.id', '=', 'appointment.doc_id')
+            ->where('appointment.status', '=', 0)
+            ->where('appointment.date','>=',$today)
+            ->get()
+            ->toArray();
+
+        // return $appointment;
+
+
+
+
+
         return view('/admin/dashboard', [
-            'docinfo' => $doctor
+            'docinfo' => $doctor,
+            'upcommingapp' =>$appointment
         ]);
     }
 
@@ -82,7 +100,7 @@ class AdminController extends Controller
 
     public function DoctorApprove(Request $request, $docId)
     {
-      
+
         $result = DoctorRegistar::where('id', '=', $docId)->update(['status' => 1]);
         if ($result == true) {
             return redirect('/admin');
@@ -91,5 +109,11 @@ class AdminController extends Controller
                 'approve' => 'Something went Wrong.',
             ]);
         }
+    }
+
+
+
+    public function DoctorAll(){
+        return view('/admin/DoctorsAll');
     }
 }

@@ -137,7 +137,7 @@ $("#loginbtnclick").click(function () {
 
 //video link show in header
 
-// setInterval(showlink,1000);
+setInterval(showlink,1000);
 
 // showlink();
 function showlink() {

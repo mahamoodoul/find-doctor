@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\DoctorSlotModel;
 use App\AppointmentModel;
 use App\VideoModel;
+use App\DoctorRegistar;
 
 class AppointmentController extends Controller
 {
@@ -36,6 +37,7 @@ class AppointmentController extends Controller
         // return $slot;
 
         if (count($doctorInfo) == 1) {
+
             return view('singleDoctorAppointment', [
                 'doctorAllInfo' => $doctorInfo,
                 'slotall' => $slot,
@@ -51,15 +53,20 @@ class AppointmentController extends Controller
         $paitent_id = $request->session()->get('paitent_id');
         // $paitent_id_primary = $request->session()->get('id');
         $paitent_name = $request->session()->get('p_name');
+        $paitent_email = $request->session()->get('p_email');
+
 
 
         $data = json_decode($_POST['appointment_data']);
         $doc_id = $data[0]->doc_id;
         $date = $data[0]->date;
-        $date= str_replace("/","-", $date);
+        $date = str_replace("/", "-", $date);
         $slot = $data[0]->slot;
         $message = $data[0]->message;
         // return  $data;
+
+
+
 
         if ($data) {
             $countappointment = AppointmentModel::where('slot', '=', $slot)->where('date', '=', $date)->where('doc_id', '=', $doc_id)->count();
@@ -75,6 +82,14 @@ class AppointmentController extends Controller
                     'status' => 0
                 ]);
                 if ($result == true) {
+                    $doc_name = (DoctorRegistar::select('name',)->where('id', '=', $doc_id)->get());
+                    $details = [
+                        'title' => 'Your Appointment schedule with Find A Doctor',
+                        'doctor' => 'You have appointed Dr.' . $doc_name[0]->name,
+                        'time' => 'Date: ' . $date . ' Time: ' . $slot
+                    ];
+                    \Mail::to($paitent_email)->send(new \App\Mail\MyTestMail($details));
+
                     return 1;
                 } else {
                     return 0;
@@ -86,18 +101,19 @@ class AppointmentController extends Controller
     }
 
 
-    public function GetVideoLink(Request $request){
+    public function GetVideoLink(Request $request)
+    {
         $paitent_id = $request->session()->get('paitent_id');
-        $result = (AppointmentModel::where('paitent_id', '=', $paitent_id)->where('status', '=',0)->get());
-        $appointment_id= $result[0]->id;
-        $slot= $result[0]->slot;
-        $date= $result[0]->date;
-        $result1 = (VideoModel::select('link')->where('appointment_id', '=', $appointment_id)->where('status', '=',0)->get());
-        $link= $result1[0]->link;
+        $result = (AppointmentModel::where('paitent_id', '=', $paitent_id)->where('status', '=', 0)->get());
+        $appointment_id = $result[0]->id;
+        $slot = $result[0]->slot;
+        $date = $result[0]->date;
+        $result1 = (VideoModel::select('link')->where('appointment_id', '=', $appointment_id)->where('status', '=', 0)->get());
+        $link = $result1[0]->link;
 
-        $linkdata=array();
+        $linkdata = array();
         $linkdata = [
-            "app_id" =>$appointment_id,
+            "app_id" => $appointment_id,
             "slot" => $slot,
             "date" => $date,
             "link" => $link

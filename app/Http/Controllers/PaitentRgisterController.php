@@ -72,6 +72,7 @@ class PaitentRgisterController extends Controller
             $request->session()->put('id', $result['0']->id);
             $request->session()->put('p_name', $result['0']->name);
             $request->session()->put('paitent_id', $result['0']->paitent_id);
+            $request->session()->put('p_email', $result['0']->email);
             return 1;
         } else {
             return 0;
