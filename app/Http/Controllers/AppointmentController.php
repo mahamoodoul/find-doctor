@@ -104,7 +104,12 @@ class AppointmentController extends Controller
     public function GetVideoLink(Request $request)
     {
         $paitent_id = $request->session()->get('paitent_id');
-        $result = (AppointmentModel::where('paitent_id', '=', $paitent_id)->where('status', '=', 0)->get());
+        $result = (AppointmentModel::where('paitent_id', '=', $paitent_id)
+            ->where('status', '=', 0)
+            ->where('date', '>=', date('m-d-Y'))
+            ->limit(1)
+            ->get());
+        // return $result;
         $appointment_id = $result[0]->id;
         $slot = $result[0]->slot;
         $date = $result[0]->date;

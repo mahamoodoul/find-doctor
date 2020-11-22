@@ -5,6 +5,7 @@ namespace App\Console;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Console\Commands\Timeupdate;
 
 class Kernel extends ConsoleKernel
 {
@@ -14,7 +15,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Timeupdate::class
     ];
 
     /**
@@ -25,12 +26,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        // $schedule->command('time:update')->everyMinute();
 
         $schedule->call(function () {
             DB::table('doctor_slot')
                 ->where('date', '<', date('Y-m-d'))->update(['date' => date('Y-m-d')]);
-        })->timezone('Asia/Dhaka')->hourly();
+        })->timezone('Asia/Dhaka')->everyMinute();
     }
 
     /**
