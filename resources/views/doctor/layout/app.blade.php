@@ -9,9 +9,10 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/font-awesome.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
-     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
-     <link href="{{ asset('css/mdb.min.css') }}" rel="stylesheet">
-     
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
+    <link href="{{ asset('css/mdb.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/jquery.dataTables.min.css')}}">
+
     <title>@yield('title')</title>
 </head>
 
@@ -38,11 +39,13 @@
     <script src="{{asset('assets/js/bootstrap-datetimepicker.min.js')}}"></script>
     <script src="{{asset('assets/js/mycustom.js')}}"></script>
     <script src="{{asset('assets/js/app.js')}}"></script>
-
+    <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
     @yield('script')
-    
-  
- 
+
+
+
+
+
 </body>
 
 </html>

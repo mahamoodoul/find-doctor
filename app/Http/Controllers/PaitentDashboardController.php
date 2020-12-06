@@ -143,6 +143,8 @@ class PaitentDashboardController extends Controller
         return $pdf->stream($paitent_id . '.pdf');
     }
 
+
+    
     public function ViewMedicine(Request $request, $appid)
     {
 

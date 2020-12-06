@@ -16,6 +16,7 @@ use App\PrescriptionModel;
 use App\PdfModel;
 use Illuminate\Support\Facades\DB;
 use PaitentRegister;
+use App\Http\Controllers\PaitentDashboardController;
 
 use function GuzzleHttp\json_decode;
 
@@ -207,4 +208,18 @@ class PaitentAppointmentController extends Controller
             return 0;
         }
     }
+
+
+    public function completed_appointment(Request $request )
+    {
+
+        $doctor_id = $request->session()->get('doctorId');
+        $result = (AppointmentModel::where('doc_id', '=', $doctor_id)->where('status', '=', 1)->get());
+        //  return $result;
+        return view("Doctor/completed_appointment",[
+            'data' =>$result
+        ]);
+    }
+
+
 }

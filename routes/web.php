@@ -75,6 +75,10 @@ Route::post('generate-pdf', 'Doctor\\PaitentAppointmentController@generatePDF');
 Route::post('/sendprestopaitent/{appo_id}', 'Doctor\\PaitentAppointmentController@sendPrescription');
 
 
+//individual doctor completed appointments paitent schedule
+Route::get('/completed_app', 'Doctor\\PaitentAppointmentController@completed_appointment');
+Route::get('/completed_app/{appo_id}', 'Doctor\\PaitentAppointmentController@showPaitentPrescription');
+
 
 
 
@@ -112,6 +116,8 @@ Route::post('/appointmentDel', 'PaitentDashboardController@delAppointment');
 Route::get('/generate/{appo_id}', 'PaitentDashboardController@generatepdf')->name('genarate.pdf');
 
 Route::get('/viewMedicine/{appo_id}', 'PaitentDashboardController@ViewMedicine');
+
+
 
 
 
