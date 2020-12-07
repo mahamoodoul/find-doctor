@@ -54,12 +54,14 @@
         </div>
     </div>
 
+
+
 @endsection
 
 
 @section('script')
     <script type="text/javascript">
-
+//doctor category udpadte in singlae page
         callTotalSlot();
 
         $('#addslot').click(function() {
