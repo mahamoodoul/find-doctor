@@ -33,6 +33,7 @@
 
 
 
+
 <div class="py-3">
     <div class="container">
         <div class="row d-flex align-items-start align-items-center px-3 px-md-0">
@@ -62,7 +63,7 @@
                 @if(Session::get('id'))
                 <button class="btn-login" data-toggle="modal" data-target="#logoutModal"><span>(<?php echo (Session::get('p_name')); ?>) </span> Logout</button>
                 @else
-                <button class="btn-login" data-toggle="modal" data-target="#exampleModalCenter1">Login</button>
+                <button id="loginclick" class="btn-login" data-toggle="modal" data-target="#exampleModalCenter1">Login</button>
                 @endif
             </div>
         </div>
@@ -233,3 +234,12 @@
         </div>
     </div>
 </div>
+
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
+<script>
+window.onload = function(){
+    document.getElementById('loginclick').click();
+  }
+</script>
+@endif

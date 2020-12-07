@@ -143,11 +143,13 @@ Route::get('/getratting', 'RatingController@getRating');
 
 
 //admin portion
-
-
-Route::get('/admin', 'Admin\\AdminController@AdminDashboard')->middleware('adminlogincheck');
+Route::get('/admin', 'Admin\\AdminController@AdminDashboard')->name('doctor.Dashboard')->middleware('adminlogincheck');
 Route::get('/admin/login', 'Admin\\AdminController@AdminLoginPage');
 Route::post('login_verfiy', 'Admin\\AdminController@AdminLoginCheck')->name('admin.login');
 Route::get('/logout', 'Admin\\AdminController@AdminLogout');
 Route::get('doctorApprove/{doc_id}', 'Admin\\AdminController@DoctorApprove')->name('doctor.approve');
 Route::get('doctorall', 'Admin\\AdminController@DoctorAll')->name('admin.doctors');
+Route::get('Category', 'Admin\\AdminCategoryController@DoctorCategory')->name('doctor.category');
+Route::get('/getDoctorcat', 'Admin\\AdminCategoryController@getDoctorCategory');
+Route::post('/categoryAdd', 'Admin\\AdminCategoryController@adddoctorCategory');
+

@@ -26,9 +26,11 @@
     <script src="{{asset('assets/js/popper.min.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery.slimscroll.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/axios.min.js') }}"></script>
     <script src="{{asset('assets/js/Chart.bundle.js')}}"></script>
     <script src="{{asset('assets/js/chart.js')}}"></script>
     <script src="{{asset('assets/js/app.js')}}"></script>
+    @yield('script')
 </body>
 
 </html>

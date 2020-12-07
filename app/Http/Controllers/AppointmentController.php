@@ -115,6 +115,7 @@ class AppointmentController extends Controller
         $date = $result[0]->date;
         $result1 = (VideoModel::select('link')->where('appointment_id', '=', $appointment_id)->where('status', '=', 0)->get());
         $link = $result1[0]->link;
+        // return $link;
 
         $linkdata = array();
         $linkdata = [

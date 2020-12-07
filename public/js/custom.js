@@ -1,5 +1,7 @@
 //login registration button
 
+
+
 // const { indexOf } = require("lodash");
 
 $("#clickforRegistration").click(function () {

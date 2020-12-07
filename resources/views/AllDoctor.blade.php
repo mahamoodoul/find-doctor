@@ -142,7 +142,7 @@
     }
 
     function doctorNotavilavail() {
-        
+
 
         $('#docinfo').append(
             '<div class="text-center ml-5">' +

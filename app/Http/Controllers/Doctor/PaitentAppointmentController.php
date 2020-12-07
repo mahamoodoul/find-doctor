@@ -29,7 +29,7 @@ class PaitentAppointmentController extends Controller
         // $date= str_replace("-","/",$today);
 
         $doctor_id = $request->session()->get('doctorId');
-        $result = (AppointmentModel::where('doc_id', '=', $doctor_id)->where('date', '>=', $today)->get());
+        $result = (AppointmentModel::where('doc_id', '=', $doctor_id)->where('status','=', 0)->where('date', '>=', $today)->get());
         return $result;
     }
 
@@ -199,10 +199,11 @@ class PaitentAppointmentController extends Controller
 
     public function sendPrescription(Request $request, $appid)
     {
-
+        // return $appid;
         $statuschange = PdfModel::where('app_id', '=', $appid)->update(['status' => 1]);
-        $Appostatuschange = AppointmentModel::where('id', '=', $appid)->update(['status' => 1]);
-        if ($statuschange == true && $Appostatuschange == true) {
+        // return $statuschange;
+        // $Appostatuschange = AppointmentModel::where('id', '=', $appid)->update(['status' => 1]);
+        if ($statuschange == true) {
             return 1;
         } else {
             return 0;
@@ -220,6 +221,4 @@ class PaitentAppointmentController extends Controller
             'data' =>$result
         ]);
     }
-
-
 }

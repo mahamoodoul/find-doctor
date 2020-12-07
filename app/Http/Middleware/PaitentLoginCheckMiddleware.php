@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
-
+use Illuminate\support\Facades\Redirect;
 use Closure;
 
 class PaitentLoginCheckMiddleware
@@ -18,11 +18,12 @@ class PaitentLoginCheckMiddleware
 
 
         $data = $request->session()->all();
-       
+
         if ($request->session()->has('id')) {
             return $next($request);
         } else {
-            return redirect('/');
+            // return redirect('/');
+            return Redirect::back()->with('error_code', 5);
         }
     }
 }
