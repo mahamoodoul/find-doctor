@@ -38,7 +38,7 @@
     <div class="container">
         <div class="row d-flex align-items-start align-items-center px-3 px-md-0">
             <div class="col-md-3 d-flex mb-2 mb-md-0">
-                <a class="navbar-brand d-flex align-items-center" href="index.html"><span class="flaticon flaticon-health"></span><span>Medex</span></a>
+                <a class="navbar-brand d-flex align-items-center" href="{{url('/')}}"><span class="flaticon flaticon-health"></span><span>Medex</span></a>
             </div>
             <div class="col-md-3 d-flex topper mb-md-0 mb-2 align-items-center">
                 <div class="icon d-flex justify-content-center align-items-center">
@@ -78,7 +78,7 @@
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav m-auto">
-                <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="{{url('about')}}" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
                 <li class="nav-item"><a href="{{url('allDoctors')}}" class="nav-link">Doctors</a></li>

@@ -60,14 +60,19 @@ class PaitentAppointmentController extends Controller
         $data = json_decode($_POST['data']);
         $app_id = $data[0]->app_id;
         $link = $data[0]->link;
+        // return $link;
         $p_id = $data[0]->p_id;
+
+        $paitentemail = PaitentRegisterModel::select("email")->where('paitent_id', '=', $p_id)->get();
         $doctor_id = $request->session()->get('doctorId');
         $linkcount = (VideoModel::where('appointment_id', '=', $app_id)->count());
+
 
 
         if ($linkcount == 1) {
 
             $result = VideoModel::where('appointment_id', '=', $app_id)->update(['link' => $link]);
+
         } else {
             $result = VideoModel::insert([
                 'appointment_id' => $app_id,
@@ -79,6 +84,7 @@ class PaitentAppointmentController extends Controller
         }
 
         if ($result == true) {
+            \Mail::to($paitentemail[0]->email)->send(new \App\Mail\VideoMail($link));
             return 1;
         } else {
             return 0;
