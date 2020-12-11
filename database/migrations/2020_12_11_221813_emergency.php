@@ -13,7 +13,15 @@ class Emergency extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('emergency', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('subject');
+            $table->string('message');
+
+        });
     }
 
     /**
