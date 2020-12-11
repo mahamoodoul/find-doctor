@@ -155,3 +155,8 @@ Route::get('Category', 'Admin\\AdminCategoryController@DoctorCategory')->name('d
 Route::get('/getDoctorcat', 'Admin\\AdminCategoryController@getDoctorCategory');
 Route::post('/categoryAdd', 'Admin\\AdminCategoryController@adddoctorCategory');
 
+
+//emergency contact
+
+Route::post('/emergency_contact', 'EmergencyController@contact_emergency');
+
