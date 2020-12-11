@@ -67,8 +67,6 @@ class PaitentAppointmentController extends Controller
         $doctor_id = $request->session()->get('doctorId');
         $linkcount = (VideoModel::where('appointment_id', '=', $app_id)->count());
 
-
-
         if ($linkcount == 1) {
 
             $result = VideoModel::where('appointment_id', '=', $app_id)->update(['link' => $link]);
@@ -206,10 +204,12 @@ class PaitentAppointmentController extends Controller
     public function sendPrescription(Request $request, $appid)
     {
         // return $appid;
-        $statuschange = PdfModel::where('app_id', '=', $appid)->update(['status' => 1]);
+        $statuschangePdfData = PdfModel::where('app_id', '=', $appid)->update(['status' => 1]);
+        $update_app = (AppointmentModel::where('id', '=', $appid)->update(['status' => 1]));
+        $update_video = (VideoModel::where('appointment_id', '=', $appid)->update(['status' => 1]));
         // return $statuschange;
         // $Appostatuschange = AppointmentModel::where('id', '=', $appid)->update(['status' => 1]);
-        if ($statuschange == true) {
+        if ($statuschangePdfData == true ) {
             return 1;
         } else {
             return 0;

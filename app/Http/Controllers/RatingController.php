@@ -91,19 +91,21 @@ class RatingController extends Controller
             $doctor_id[$a] = $avgdocID[$a]->doc_id;
         }
 
+        if (!empty($avgrating)){
+            for ($l = 0; $l < count($avgrating); $l++) {
+                if (in_array($avgrating[$l]['id'], $doctor_id)) {
 
-        for ($l = 0; $l < count($avgrating); $l++) {
-            if (in_array($avgrating[$l]['id'], $doctor_id)) {
-
-                $update = RatingAvgModel::where('doc_id', '=', $avgrating[$l]['id'])->update(['avg' => $avgrating[$l]['avg']]);
-                return true;
-            } else {
-                $insertavg = RatingAvgModel::insert([
-                    'doc_id' => $avgrating[$l]['id'],
-                    'avg' => $avgrating[$l]['avg']
-                ]);
-                return true;
+                    $update = RatingAvgModel::where('doc_id', '=', $avgrating[$l]['id'])->update(['avg' => $avgrating[$l]['avg']]);
+                    return true;
+                } else {
+                    $insertavg = RatingAvgModel::insert([
+                        'doc_id' => $avgrating[$l]['id'],
+                        'avg' => $avgrating[$l]['avg']
+                    ]);
+                    return true;
+                }
             }
         }
+
     }
 }

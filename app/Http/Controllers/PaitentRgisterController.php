@@ -14,7 +14,7 @@ class PaitentRgisterController extends Controller
         $rand_num = mt_rand(100000, 999999);
 
 
-        $paitent_id = 'paitent-' . ($rand_num);
+        $paitent_id = 'p-' . ($rand_num);
         $name = $data[0]->name;
         $email = $data[0]->email;
         $number = $data[0]->number;
@@ -22,7 +22,7 @@ class PaitentRgisterController extends Controller
         $address = $data[0]->address;
         $age = $data[0]->age;
         $blood = $data[0]->blood;
-        $password = password_hash($data[0]->password, PASSWORD_BCRYPT);
+        $password =sha1($data[0]->password);
         $status = 0;
 
 
@@ -59,7 +59,7 @@ class PaitentRgisterController extends Controller
 
         $email = $data[0]->email;
 
-        $password = $data[0]->password;
+        $password = sha1($data[0]->password);
 
         // $password = password_hash($data[0]->password, PASSWORD_BCRYPT);
 

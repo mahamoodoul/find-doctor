@@ -26,7 +26,7 @@ class DoctorRegistration extends Controller
         $gender = $data[0]->gender;
         $phone = $data[0]->phone;
         $address = $data[0]->address;
-        $password = password_hash($data[0]->password, PASSWORD_BCRYPT);
+        $password = sha1($data[0]->password);
 
 
 
@@ -54,10 +54,10 @@ class DoctorRegistration extends Controller
 
     public function DoctorLogin(Request $request)
     {
-        
+
         $data = json_decode($_POST['loginData']);
         $email = $data[0]->email;
-        $password = $data[0]->password;
+        $password = sha1($data[0]->password);
         $countRow = DoctorRegistar::where('email', '=', $email)->where('password', '=', $password)->count();
 
         if ($countRow == 1) {
