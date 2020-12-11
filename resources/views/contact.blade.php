@@ -139,8 +139,8 @@
                         if ((response.status = 200)) {
                             if (response.data == 1) {
 
-                                toastr.success("Message sent. ");
                                 toastr.success("You will recive instant response");
+                                toastr.success("Message sent. ");
                                 $('#e_name').val("");
                                 $('#e_email').val("");
                                 $('#phone').val("");

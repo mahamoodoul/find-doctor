@@ -16,7 +16,21 @@ class EmergencyController extends Controller
         $phone = $data[0]->phone;
         $slot = $data[0]->subject;
         $message = $data[0]->message;
-        
-        return $data;
+
+        if($data){
+            $result = EmergencyModel::insert([
+                'name' => $name,
+                'email' => $email,
+                'phone' => $phone,
+                'subject' => $slot,
+                'message' => $message
+            ]);
+            if($result == true){
+                return 1;
+            }else{
+                return 0;
+            }
+
+        }
     }
 }
