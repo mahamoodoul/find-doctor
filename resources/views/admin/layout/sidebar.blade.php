@@ -2,7 +2,7 @@
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
-                <li class="menu-title">Main</li>
+                {{-- <li class="menu-title">Main</li> --}}
                 <li class="active">
                     <a href="{{route('doctor.Dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                 </li>
@@ -14,15 +14,15 @@
                     <a href="{{route('doctor.category')}}"><i class="fa fa-wheelchair"></i> <span>Doctor Category</span></a>
                 </li>
                 <li>
-                    <a href="appointments.html"><i class="fa fa-calendar"></i> <span>Appointments</span></a>
+                    <a href="{{route('paitent.emergency')}}"><i class="fa fa-meetup"></i> <span>Emergency Contact</span></a>
                 </li>
                 <li>
-                    <a href="schedule.html"><i class="fa fa-calendar-check-o"></i> <span>Doctor Schedule</span></a>
+                    <a href="schedule.html"><i class="fa fa-calendar-check-o"></i> <span>All Paitents</span></a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="departments.html"><i class="fa fa-hospital-o"></i> <span>Departments</span></a>
-                </li>
-                <li class="submenu">
+                </li> --}}
+                {{-- <li class="submenu">
                     <a href="#"><i class="fa fa-user"></i> <span> Employees </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="employees.html">Employees List</a></li>
@@ -30,7 +30,7 @@
                         <li><a href="holidays.html">Holidays</a></li>
                         <li><a href="attendance.html">Attendance</a></li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>

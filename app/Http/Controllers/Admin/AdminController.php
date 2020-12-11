@@ -116,4 +116,9 @@ class AdminController extends Controller
     public function DoctorAll(){
         return view('/admin/DoctorsAll');
     }
+
+
+    public function PaitentEmergency(){
+        return view("admin/emergency_contact");
+    }
 }
