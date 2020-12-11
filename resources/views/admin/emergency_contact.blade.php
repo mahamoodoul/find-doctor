@@ -20,21 +20,23 @@
                         </tr>
                     </thead>
 
+                    @foreach ($em_info as $item)
+
 
 
                         <tbody>
                             <tr>
 
-                                <td>Completed</td>
-                                <td>Completed</td>
-                                <td>Completed</td>
-                                <td>Completed</td>
-                                <td>Completed</td>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->email}}</td>
+                                <td>{{$item->phone}}</td>
+                                <td>{{$item->subject}}</td>
+                                <td>{{$item->message}}</td>
 
                             </tr>
 
                         </tbody>
-
+                    @endforeach
                 </table>
             </div>
         </div>
@@ -47,11 +49,9 @@
 
 @section('script')
     <script type="text/javascript">
-
         $(document).ready(function() {
             $('#table_id').DataTable();
         });
-
 
     </script>
 @endsection

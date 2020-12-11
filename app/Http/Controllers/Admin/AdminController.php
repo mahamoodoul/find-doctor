@@ -10,7 +10,8 @@ use App\DoctorRegistar;
 use App\DoctorEducationModel;
 use App\DoctorExperienceModel;
 use App\AppointmentModel;
-
+use App\EmergencyModel;
+use Emergency;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -119,6 +120,13 @@ class AdminController extends Controller
 
 
     public function PaitentEmergency(){
-        return view("admin/emergency_contact");
+
+
+        $result = json_decode(EmergencyModel::get());
+        // dd($result);
+        // return $result;
+        return view("admin/emergency_contact",[
+            'em_info' => $result
+        ]);
     }
 }
