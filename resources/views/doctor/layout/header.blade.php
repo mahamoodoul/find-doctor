@@ -3,8 +3,8 @@
 <div class="main-wrapper">
     <div class="header">
         <div class="header-left">
-            <a href="index-2.html" class="logo">
-                <img src="{{asset('assets/img/logo.png')}}" width="35" height="35" alt=""> <span>Preclinic</span>
+            <a href="{{url('/doctorHome')}}" class="logo">
+                <img src="{{asset('assets/img/logo.png')}}" width="35" height="35" alt=""> <span>FindDoctor</span>
             </a>
         </div>
         <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
@@ -100,7 +100,7 @@
                     <a class="dropdown-item" href="{{ url('/edit_profile') }}">Update Profile</a>
                     <a class="dropdown-item" href="{{ url('/slot_update') }}">Slot Update</a>
                     <a style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal" class="dropdown-item" >Logout</a>
-                  
+
                 </div>
             </li>
         </ul>
@@ -115,9 +115,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Are you Sure Want to Log Out</h5>
-                  
+
                 </div>
-               
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                     <a class="btn btn-primary" href="{{ url('/doctor_logout') }}">Yes</a>

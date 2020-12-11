@@ -6,7 +6,7 @@
                 <div class="py-lg-5">
                     <div class="row justify-content-center pb-5">
                         <div class="col-md-12 heading-section ftco-animate">
-                            <h2 class="mb-3">Welcome to <span>Medex</span></h2>
+                            <h2 class="mb-3">Welcome to <span>FindDoctor</span></h2>
                         </div>
                     </div>
                     <div class="row">

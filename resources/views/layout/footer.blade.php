@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-lg col-md-6">
                     <div class="ftco-footer-widget">
-                        <h2 class="ftco-heading-2 logo d-flex align-items-center"><a href="#"><span class="flaticon-health flaticon"></span><span>Medex</span></a></h2>
+                        <h2 class="ftco-heading-2 logo d-flex align-items-center"><a href="#"><span class="flaticon-health flaticon"></span><span>FindDoctor</span></a></h2>
                         <p>Far far away, behind the word mountains, far from the countries.</p>
                         <ul class="ftco-footer-social list-unstyled mt-4">
                             <li><a href="#"><span class="fa fa-twitter"></span></a></li>
@@ -77,7 +77,7 @@
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         Copyright &copy;<script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </script> All rights reserved | Admin & Maintained <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://www.facebook.com/mahamodul.shakil.3/" target="_blank">Mahmud Shakil</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
                 </div>

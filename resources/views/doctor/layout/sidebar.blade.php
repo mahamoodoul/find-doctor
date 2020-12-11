@@ -2,20 +2,24 @@
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
-                <li class="menu-title">Main</li>
+                {{-- <li class="menu-title">Main</li> --}}
                 <li class="active">
-                    <a href="index-2.html"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                    <a href="{{url('/doctorHome')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                 </li>
                 <li>
                     <a href="{{ url('/completed_app') }}"><i class="fa fa-wheelchair"></i> <span>Patients</span></a>
                 </li>
                 <li>
-                    <a href="appointments.html"><i class="fa fa-calendar"></i> <span>Appointments</span></a>
+
+                    <a href="{{ url('/doctor_profile') }}"><i class="fa fa-info"></i> <span>Your Profile</span></a>
                 </li>
                 <li>
-                    <a href="schedule.html"><i class="fa fa-calendar-check-o"></i> <span>Doctor Schedule</span></a>
+                    <a href="{{ url('/edit_profile') }}"><i class="fa fa-info-circle"></i> <span>Update Profile</span></a>
                 </li>
-                <li class="submenu">
+                <li>
+                    <a href="{{ url('/slot_update') }}"><i class="fa fa-calendar-check-o"></i> <span>Schedule Change</span></a>
+                </li>
+                {{-- <li class="submenu">
                     <a href="#"><i class="fa fa-user"></i> <span> Employees </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="employees.html">Employees List</a></li>
@@ -23,7 +27,7 @@
                         <li><a href="holidays.html">Holidays</a></li>
                         <li><a href="attendance.html">Attendance</a></li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>

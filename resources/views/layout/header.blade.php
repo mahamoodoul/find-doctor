@@ -8,7 +8,7 @@
                         <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.</p>
                         <div class="row">
                             <div class="col-md-7 col-lg-10">
-                                <form action="#" class="appointment-form-intro ftco-animate">
+                                <div action="" class="appointment-form-intro ftco-animate">
                                     <div class="d-flex">
                                         <div class="form-group">
                                             <div class="form-field">
@@ -27,10 +27,11 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <input type="submit" value="Book Appointment" class="btn-custom form-control py-3 px-4">
+                                        <a class="btn-custom form-control py-3 px-4" href="{{url('/allDoctors')}}">Book Appointment</a>
+                                            {{-- <input type="submit" value="Book Appointment" class="btn-custom form-control py-3 px-4"> --}}
                                         </div>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>

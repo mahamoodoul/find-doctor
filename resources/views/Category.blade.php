@@ -5,7 +5,7 @@
             <div class="col-md-7">
                 <h2>Your Health is Our Priority</h2>
                 <p>We can manage your dream building A small river named Duden flows by their place</p>
-                <p class="mb-0"><a href="#" class="btn btn-white px-4 py-3">Make An Appointment</a></p>
+            <p class="mb-0"><a href="{{url('/allDoctors')}}" class="btn btn-white px-4 py-3">Make An Appointment</a></p>
             </div>
         </div>
     </div>
@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row justify-content-center mb-5 pb-2">
             <div class="col-md-8 text-center heading-section ftco-animate">
-                <h2 class="mb-4">Medex <span>Department</span></h2>
+                <h2 class="mb-4">FindDoctor <span>Department</span></h2>
             </div>
         </div>
         <div class="row tabulation mt-4 ftco-animate">

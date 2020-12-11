@@ -38,7 +38,7 @@
     <div class="container">
         <div class="row d-flex align-items-start align-items-center px-3 px-md-0">
             <div class="col-md-3 d-flex mb-2 mb-md-0">
-                <a class="navbar-brand d-flex align-items-center" href="{{url('/')}}"><span class="flaticon flaticon-health"></span><span>Medex</span></a>
+                <a class="navbar-brand d-flex align-items-center" href="{{url('/')}}"><span class="flaticon flaticon-health"></span><span>FindDoctor</span></a>
             </div>
             <div class="col-md-3 d-flex topper mb-md-0 mb-2 align-items-center">
                 <div class="icon d-flex justify-content-center align-items-center">
@@ -82,13 +82,13 @@
                 <li class="nav-item"><a href="{{url('about')}}" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
                 <li class="nav-item"><a href="{{url('allDoctors')}}" class="nav-link">Doctors</a></li>
-                <li class="nav-item"><a href="department.html" class="nav-link">Departments</a></li>
+                {{-- <li class="nav-item"><a href="department.html" class="nav-link">Departments</a></li> --}}
                 @if(Session::get('id'))
                 <li class="nav-item"><a href="{{url('paitent_dashboard')}}" class="nav-link">Dashboard</a></li>
                 @endif
-                <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
-                <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="gallery.html" class="nav-link">Blog</a></li>
+                {{-- <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li> --}}
+            <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link"> Emergency</a></li>
             </ul>
         </div>
     </div>

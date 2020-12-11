@@ -21,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 //userHome controller
 Route::get('/', 'PaitentHomecontroller@getAlldata');
 
+Route::get('/contact', function () {
+    return view('/contact');
+});
 
 
 
@@ -34,7 +37,6 @@ Route::get('/about', function () {
 Route::get('/doctor', function () {
     return view('/doctor/register');
 });
-
 
 
 
